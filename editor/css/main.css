@@ -347,6 +347,12 @@ select:hover {
   text-align: right;
 }
 
+#menubar .menu.right .title {
+  width: 0;
+  padding: 8px 0;
+  visibility: hidden;
+}
+
 #menubar .menu .title {
   display: inline-block;
   color: white;
