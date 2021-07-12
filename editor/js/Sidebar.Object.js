@@ -484,7 +484,30 @@ function SidebarObject(editor) {
 
   container.add(objectRenderOrderRow);
 
-  //
+  // user data
+
+  var objectUserDataRow = new UIRow();
+  var objectUserData = new UITextArea()
+    .setWidth("150px")
+    .setHeight("40px")
+    .setFontSize("12px")
+    .onChange(update);
+  objectUserData.onKeyUp(function () {
+    try {
+      JSON.parse(objectUserData.getValue());
+
+      objectUserData.dom.classList.add("success");
+      objectUserData.dom.classList.remove("fail");
+    } catch (error) {
+      objectUserData.dom.classList.remove("success");
+      objectUserData.dom.classList.add("fail");
+    }
+  });
+
+  objectUserDataRow.add(
+    new UIText(strings.getKey("sidebar/object/userdata")).setWidth("90px")
+  );
+  objectUserDataRow.add(objectUserData);
 
   function update() {
     var object = editor.selected;
