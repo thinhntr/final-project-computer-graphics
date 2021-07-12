@@ -155,9 +155,9 @@ function SidebarScene( editor ) {
 		signals.sceneBackgroundChanged.dispatch(
 			backgroundType.getValue(),
 			backgroundColor.getHexValue(),
-			backgroundTexture.getValue(),
-			backgroundEquirectangularTexture.getValue(),
-			environmentType.getValue()
+			// backgroundTexture.getValue(),
+			// backgroundEquirectangularTexture.getValue(),
+			// environmentType.getValue()
 		);
 
 	}
@@ -185,13 +185,13 @@ function SidebarScene( editor ) {
 	var backgroundColor = new UIColor().setValue( '#000000' ).setMarginLeft( '8px' ).onInput( onBackgroundChanged );
 	backgroundRow.add( backgroundColor );
 
-	var backgroundTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
-	backgroundTexture.setDisplay( 'none' );
-	backgroundRow.add( backgroundTexture );
+	// var backgroundTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
+	// backgroundTexture.setDisplay( 'none' );
+	// backgroundRow.add( backgroundTexture );
 
-	var backgroundEquirectangularTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
-	backgroundEquirectangularTexture.setDisplay( 'none' );
-	backgroundRow.add( backgroundEquirectangularTexture );
+	// var backgroundEquirectangularTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
+	// backgroundEquirectangularTexture.setDisplay( 'none' );
+	// backgroundRow.add( backgroundEquirectangularTexture );
 
 	container.add( backgroundRow );
 
@@ -203,8 +203,8 @@ function SidebarScene( editor ) {
 
 		backgroundType.setWidth( type === 'None' ? '150px' : '110px' );
 		backgroundColor.setDisplay( type === 'Color' ? '' : 'none' );
-		backgroundTexture.setDisplay( type === 'Texture' ? '' : 'none' );
-		backgroundEquirectangularTexture.setDisplay( type === 'Equirectangular' ? '' : 'none' );
+		// backgroundTexture.setDisplay( type === 'Texture' ? '' : 'none' );
+		// backgroundEquirectangularTexture.setDisplay( type === 'Equirectangular' ? '' : 'none' );
 
 	}
 
@@ -260,8 +260,8 @@ function SidebarScene( editor ) {
 
 				backgroundType.setValue( 'Color' );
 				backgroundColor.setHexValue( scene.background.getHex() );
-				backgroundTexture.setValue( null );
-				backgroundEquirectangularTexture.setValue( null );
+				// backgroundTexture.setValue( null );
+				// backgroundEquirectangularTexture.setValue( null );
 
 			}
 
@@ -270,8 +270,8 @@ function SidebarScene( editor ) {
 		} else {
 
 			backgroundType.setValue( 'None' );
-			backgroundTexture.setValue( null );
-			backgroundEquirectangularTexture.setValue( null );
+			// backgroundTexture.setValue( null );
+			// backgroundEquirectangularTexture.setValue( null );
 
 		}
 
