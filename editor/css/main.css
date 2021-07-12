@@ -1,4 +1,5 @@
 :root {
+  --white: 255, 255, 255;
   --gray-50: 249, 250, 251;
   --gray-100: 243, 244, 246;
   --gray-200: 229, 231, 235;
@@ -57,7 +58,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-  border: none;
+  border: 1px solid white;
 }
 input[type="checkbox"] {
   appearance: none;
@@ -95,7 +96,8 @@ input {
 } /* osx */
 
 .Input {
-  background: rgb(var(--gray-800));
+  background: rgba(var(--gray-700), 0.5);
+  backdrop-filter: blur(8px);
   color: white;
   border-radius: 0.25rem;
   height: 1.25rem;
@@ -106,28 +108,27 @@ input {
 }
 
 .Select {
-  background: rgba(var(--gray-800), 0.5);
+  background: rgba(var(--gray-700), 0.5);
   backdrop-filter: blur(8px);
+  border-radius: 0.25rem;
+  padding: 0.5rem !important;
   color: white;
 }
 
-.Select > option {
-  background: rgba(var(--gray-800), 0.5);
+.Select:hover {
+  background-color: rgba(var(--gray-600), 0.5);
   backdrop-filter: blur(8px);
+}
+
+.Select option {
+  background: rgba(var(--gray-700), 1);
+  padding: 0.5 rem 0;
+  border-radius: 0.25rem;
+  border: none;
 }
 
 .Button {
   background: rgb(var(--gray-800));
-}
-
-.Panel {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-
-  /* No support for these yet */
-  -o-user-select: none;
-  user-select: none;
 }
 
 .TabbedPanel {
@@ -147,6 +148,7 @@ input {
   position: relative;
   display: block;
   width: 100%;
+  background: rgba(var(--gray-900), 0.5);
 }
 
 .TabbedPanel .Tabs .Tab {
@@ -395,7 +397,7 @@ select:hover {
   position: absolute;
   width: 100%;
   height: 32px;
-  background: rgba(var(--gray-800), 0.5);
+  background: rgba(var(--gray-900), 0.75);
   backdrop-filter: blur(8px);
   padding: 0;
   margin: 0;
@@ -409,8 +411,12 @@ select:hover {
   padding-right: 8px;
 }
 
+#menubar .menu:first-of-type {
+  margin-left: 10px;
+}
+
 #menubar .menu:hover {
-  background: rgba(var(--pink-500), 1);
+  background: rgba(var(--pink-5 00), 1);
 }
 
 #menubar .menu.right {
@@ -447,11 +453,8 @@ select:hover {
   width: 150px;
   max-height: 100vh;
   overflow: auto;
-}
-
-.options {
+  background: rgba(var(--gray-900), 0.5);
   backdrop-filter: blur(8px);
-  background: rgba(var(--gray-800), 0.5);
 }
 
 #menubar .menu:hover .options {
@@ -482,15 +485,13 @@ select:hover {
   top: 32px;
   bottom: 0;
   width: 300px;
-  background: rgba(var(--gray-800), 0.5);
+  background: rgba(var(--gray-900), 0.5);
   backdrop-filter: blur(8px);
   overflow: auto;
 }
 
 #sidebar .Panel {
-  color: rgb(var(--gray-800));
   padding: 10px;
-  /* border-top: 1px solid #ccc; */
 }
 
 #sidebar .Panel.collapsed {
@@ -554,7 +555,7 @@ select:hover {
 
 .Outliner {
   color: #444;
-  background-color: rgba(var(--gray-800), 0);
+  background-color: rgba(var(--gray-700), 0.5);
   padding: 0;
   width: 100%;
   height: 140px;
@@ -579,11 +580,6 @@ select:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-.TabbedPanel .Tabs {
-  background-color: rgba(var(--gray-800), 0);
-  /* border-top: 1px solid #ccc; */
-}
-
 .TabbedPanel .Tab {
   color: #aaa;
   /* border-right: 1px solid #ccc; */
@@ -591,7 +587,7 @@ select:hover {
 
 .TabbedPanel .Tab.selected {
   color: white;
-  background-color: rgb(var(--gray-800));
+  background-color: rgba(var(--gray-700), 0.5);
 }
 
 .Listbox {
@@ -601,7 +597,7 @@ select:hover {
 
 #viewport #cameraSelect {
   position: fixed;
-  right: 310px;
+  right: 320px;
   top: 42px;
 }
 /* */
