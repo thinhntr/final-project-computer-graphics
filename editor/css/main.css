@@ -34,11 +34,15 @@ body {
 }
 
 ::-webkit-scrollbar-track hr {
-  background: #1e1e24;
+  background: var(--gray-900);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6649b8;
+  background: var(--pink-700);
+}
+
+::webkit-scrollbar-corner {
+  background: var(--pink-700);
 }
 
 button {
