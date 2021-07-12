@@ -1,25 +1,25 @@
 :root {
-  --gray-50: rgba(249, 250, 251, 1);
-  --gray-100: rgba(243, 244, 246, 1);
-  --gray-200: rgba(229, 231, 235, 1);
-  --gray-300: rgba(209, 213, 219, 1);
-  --gray-400: rgba(156, 163, 175, 1);
-  --gray-500: rgba(107, 114, 128, 1);
-  --gray-600: rgba(75, 85, 99, 1);
-  --gray-700: rgba(55, 65, 81, 1);
-  --gray-800: rgba(31, 41, 55, 1);
-  --gray-900: rgba(17, 24, 39, 1);
+  --gray-50: 249, 250, 251;
+  --gray-100: 243, 244, 246;
+  --gray-200: 229, 231, 235;
+  --gray-300: 209, 213, 219;
+  --gray-400: 156, 163, 175;
+  --gray-500: 107, 114, 128;
+  --gray-600: 75, 85, 99;
+  --gray-700: 55, 65, 81;
+  --gray-800: 31, 41, 55;
+  --gray-900: 17, 24, 39;
 
-  --pink-50: rgba(253, 242, 248, 1);
-  --pink-100: rgba(252, 231, 243, 1);
-  --pink-200: rgba(251, 207, 232, 1);
-  --pink-300: rgba(249, 168, 212, 1);
-  --pink-400: rgba(244, 114, 182, 1);
-  --pink-500: rgba(236, 72, 153, 1);
-  --pink-600: rgba(219, 39, 119, 1);
-  --pink-700: rgba(190, 24, 93, 1);
-  --pink-800: rgba(157, 23, 77, 1);
-  --pink-900: rgba(131, 24, 67, 1);
+  --pink-50: 253, 242, 248;
+  --pink-100: 252, 231, 243;
+  --pink-200: 251, 207, 232;
+  --pink-300: 249, 168, 212;
+  --pink-400: 244, 114, 182;
+  --pink-500: 236, 72, 153;
+  --pink-600: 219, 39, 119;
+  --pink-700: 190, 24, 93;
+  --pink-800: 157, 23, 77;
+  --pink-900: 131, 24, 67;
 }
 
 body {
@@ -34,15 +34,15 @@ body {
 }
 
 ::-webkit-scrollbar-track hr {
-  background: var(--gray-900);
+  background: rgb(var(--gray-900));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--pink-700);
+  background: rgb(var(--pink-700));
 }
 
 ::webkit-scrollbar-corner {
-  background: var(--pink-700);
+  background: rgb(var(--pink-700));
 }
 
 button {
@@ -67,7 +67,7 @@ input[type="checkbox"] {
   /* flex-shrink: 0; */
   height: 0.75rem;
   width: 0.75rem;
-  background-color: var(--pink-600);
+  background-color: rgb(var(--pink-600));
   border-radius: 10%;
 }
 input[type="checkbox"]:checked {
@@ -96,7 +96,7 @@ input {
 } /* osx */
 
 .Input {
-  background: var(--gray-700);
+  background: rgb(var(--gray-700));
   color: white;
   border-radius: 0.25rem;
   height: 1.25rem;
@@ -107,16 +107,16 @@ input {
 }
 
 .Select {
-  background: var(--gray-700);
+  background: rgb(var(--gray-700));
   color: white;
 }
 
 .Select > option {
-  background: var(--gray-700);
+  background: rgb(var(--gray-700));
 }
 
 .Button {
-  background: var(--gray-800);
+  background: rgb(var(--gray-800));
 }
 
 .Panel {
@@ -314,11 +314,11 @@ button {
 }
 
 button:hover {
-  background-color: var(--gray-600);
+  background-color: rgb(var(--gray-600));
 }
 
 button.selected {
-  background-color: var(--gray-600);
+  background-color: rgb(var(--gray-600));
 }
 
 input,
@@ -328,7 +328,7 @@ textarea {
 }
 
 input.Number {
-  color: var(--pink-500) !important;
+  color: rgb(var(--pink-500)) !important;
   font-size: 13px;
   font-weight: 600;
   border: 0px;
@@ -345,7 +345,7 @@ select {
 }
 
 select:hover {
-  background-color: var(--gray-600);
+  background-color: rgb(var(--gray-600));
 }
 
 /* UI */
@@ -394,7 +394,7 @@ select:hover {
   position: absolute;
   width: 100%;
   height: 32px;
-  background: var(--gray-900);
+  background: rgb(var(--gray-900));
   padding: 0;
   margin: 0;
   right: 0;
@@ -436,7 +436,7 @@ select:hover {
   position: fixed;
   display: none;
   padding: 5px 0;
-  background: var(--gray-800);
+  background: rgb(var(--gray-800));
   width: 150px;
   max-height: calc(100% - 80px);
   overflow: auto;
@@ -447,12 +447,12 @@ select:hover {
 }
 
 #menubar .menu .options hr {
-  border-color: var(--gray-600);
+  border-color: rgb(var(--gray-600));
 }
 
 #menubar .menu .options .option {
   color: white;
-  background-color: var(--gray-800);
+  background-color: rgb(var(--gray-800));
   padding: 5px 10px;
   margin: 0 !important;
 }
@@ -480,12 +480,12 @@ select:hover {
   top: 32px;
   bottom: 0;
   width: 300px;
-  background: var(--gray-800);
+  background: rgb(var(--gray-800));
   overflow: auto;
 }
 
 #sidebar .Panel {
-  color: var(--gray-800);
+  color: rgb(var(--gray-800));
   padding: 10px;
   /* border-top: 1px solid #ccc; */
 }
@@ -539,7 +539,7 @@ select:hover {
 
 .Outliner {
   color: #444;
-  background-color: var(--gray-700);
+  background-color: rgb(var(--gray-700));
   padding: 0;
   width: 100%;
   height: 140px;
@@ -565,7 +565,7 @@ select:hover {
 }
 
 .TabbedPanel .Tabs {
-  background-color: var(--gray-700);
+  background-color: rgb(var(--gray-700));
   /* border-top: 1px solid #ccc; */
 }
 
@@ -576,7 +576,7 @@ select:hover {
 
 .TabbedPanel .Tab.selected {
   color: white;
-  background-color: var(--gray-700);
+  background-color: rgb(var(--gray-700));
 }
 
 .Listbox {
@@ -585,7 +585,7 @@ select:hover {
 }
 
 .Panel {
-  color: var(--gray-800);
+  color: rgb(var(--gray-800));
 }
 
 /* */
