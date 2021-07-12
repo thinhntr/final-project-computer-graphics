@@ -20,7 +20,7 @@ body {
 
 hr {
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--gray-600);
 }
 
 button {
@@ -58,6 +58,24 @@ textarea,
 input {
   outline: none;
 } /* osx */
+
+.Input {
+  background: var(--gray-700);
+  color: white;
+}
+
+.Text {
+  color: white;
+}
+
+.Select {
+  background: var(--gray-700);
+  color: white;
+}
+
+.Button {
+  background: var(--gray-800);
+}
 
 .Panel {
   -moz-user-select: none;
@@ -353,6 +371,10 @@ select:hover {
   text-align: right;
 }
 
+#menubar .menu.right .Text {
+  color: white;
+}
+
 #menubar .menu.right .title {
   width: 0;
   padding: 8px 0;
@@ -371,7 +393,7 @@ select:hover {
   position: fixed;
   display: none;
   padding: 5px 0;
-  background: #eee;
+  background: var(--gray-800);
   width: 150px;
   max-height: calc(100% - 80px);
   overflow: auto;
@@ -382,12 +404,12 @@ select:hover {
 }
 
 #menubar .menu .options hr {
-  border-color: #ddd;
+  border-color: var(--gray-600);
 }
 
 #menubar .menu .options .option {
-  color: #666;
-  background-color: transparent;
+  color: white;
+  background-color: var(--gray-800);
   padding: 5px 10px;
   margin: 0 !important;
 }
@@ -415,14 +437,14 @@ select:hover {
   top: 32px;
   bottom: 0;
   width: 300px;
-  background: #eee;
+  background: var(--gray-800);
   overflow: auto;
 }
 
 #sidebar .Panel {
-  color: #888;
+  color: var(--gray-800);
   padding: 10px;
-  border-top: 1px solid #ccc;
+  /* border-top: 1px solid #ccc; */
 }
 
 #sidebar .Panel.collapsed {
@@ -440,7 +462,7 @@ select:hover {
 
 #tabs {
   background-color: #ddd;
-  border-top: 1px solid #ccc;
+  /* border-top: 1px solid #ccc; */
 }
 
 #tabs span {
@@ -459,7 +481,7 @@ select:hover {
   left: 10px;
   top: 42px;
   width: 32px;
-  background: #eee;
+  background: var(--gray-700);
   text-align: center;
 }
 
@@ -475,7 +497,7 @@ select:hover {
 
 .Outliner {
   color: #444;
-  background-color: #fff;
+  background-color: var(--gray-700);
   padding: 0;
   width: 100%;
   height: 140px;
@@ -488,7 +510,7 @@ select:hover {
 
 .Outliner .option {
   padding: 4px;
-  color: #666;
+  color: white;
   white-space: nowrap;
 }
 
@@ -501,18 +523,18 @@ select:hover {
 }
 
 .TabbedPanel .Tabs {
-  background-color: #ddd;
-  border-top: 1px solid #ccc;
+  background-color: var(--gray-700);
+  /* border-top: 1px solid #ccc; */
 }
 
 .TabbedPanel .Tab {
   color: #aaa;
-  border-right: 1px solid #ccc;
+  /* border-right: 1px solid #ccc; */
 }
 
 .TabbedPanel .Tab.selected {
-  color: #888;
-  background-color: #eee;
+  color: white;
+  background-color: var(--gray-500);
 }
 
 .Listbox {
@@ -521,7 +543,7 @@ select:hover {
 }
 
 .Panel {
-  color: #888;
+  color: var(--gray-800);
 }
 
 /* */
