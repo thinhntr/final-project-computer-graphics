@@ -153,7 +153,6 @@ function SidebarScene(editor) {
     .setOptions({
       None: "",
       Color: "Color",
-      Texture: "Texture",
     })
     .setWidth("150px");
   backgroundType.onChange(function () {
