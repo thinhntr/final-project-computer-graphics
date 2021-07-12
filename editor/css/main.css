@@ -479,7 +479,7 @@ select:hover {
 #toolbar {
   position: absolute;
   left: 10px;
-  top: 42px;
+  bottom: 10px;
   width: 32px;
   background: var(--gray-700);
   text-align: center;
