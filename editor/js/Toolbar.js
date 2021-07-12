@@ -15,7 +15,6 @@ function Toolbar(editor) {
     icon.setAttribute("viewBox", "0 0 512 512");
 
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("fill", "white");
     path.setAttribute("d", d);
 
     icon.appendChild(path);

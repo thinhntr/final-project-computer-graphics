@@ -525,15 +525,27 @@ select:hover {
   bottom: 42px;
   width: 32px;
   text-align: center;
+  backdrop-filter: blur(8px);
 }
 
 #toolbar button,
 #toolbar input {
+  background: rgba(var(--gray-900), 0.5);
   height: 32px;
+}
+
+#toolbar .Button.selected {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+#toolbar .Button.selected svg {
+  fill: black;
 }
 
 #toolbar button svg {
   width: 16px;
+  fill: white;
   opacity: 1;
 }
 
