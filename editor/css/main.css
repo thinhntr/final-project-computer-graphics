@@ -272,11 +272,11 @@ button {
 }
 
 button:hover {
-  background-color: #fff;
+  background-color: var(--gray-600);
 }
 
 button.selected {
-  background-color: #fff;
+  background-color: var(--gray-600);
 }
 
 input,
@@ -481,7 +481,6 @@ select:hover {
   left: 10px;
   bottom: 10px;
   width: 32px;
-  background: var(--gray-700);
   text-align: center;
 }
 
@@ -490,9 +489,9 @@ select:hover {
   height: 32px;
 }
 
-#toolbar button img {
+#toolbar button svg {
   width: 16px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .Outliner {
