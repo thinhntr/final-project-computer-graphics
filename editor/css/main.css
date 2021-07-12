@@ -596,10 +596,11 @@ select:hover {
   background-color: #fff;
 }
 
-.Panel {
-  color: rgb(var(--gray-800));
+#viewport #cameraSelect {
+  position: fixed;
+  right: 310px;
+  top: 42px;
 }
-
 /* */
 
 @media all and (max-width: 600px) {
