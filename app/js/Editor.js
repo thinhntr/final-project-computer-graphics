@@ -36,9 +36,6 @@ function Editor() {
     savingStarted: new Signal(),
     savingFinished: new Signal(),
 
-    dark: new Signal(),
-    light: new Signal(),
-
     transformModeChanged: new Signal(),
     snapChanged: new Signal(),
     spaceChanged: new Signal(),
