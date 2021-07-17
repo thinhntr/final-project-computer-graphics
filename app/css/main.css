@@ -395,12 +395,13 @@ select:hover {
 
 #menubar {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 300px);
   height: 32px;
   background: rgba(var(--gray-900), 0.75);
   backdrop-filter: blur(8px);
   padding: 0;
   margin: 0;
+  left: 300px;
   right: 0;
   top: 0;
 }
@@ -481,8 +482,8 @@ select:hover {
 
 #sidebar {
   position: absolute;
-  right: 0;
-  top: 32px;
+  left: 0;
+  top: 0;
   bottom: 0;
   width: 300px;
   background: rgba(var(--gray-900), 0.5);
@@ -525,7 +526,7 @@ select:hover {
 
 #toolbar {
   position: absolute;
-  left: 10px;
+  right: 10px;
   bottom: 42px;
   width: 32px;
   text-align: center;
@@ -597,7 +598,7 @@ select:hover {
 
 #viewport #cameraSelect {
   position: fixed;
-  right: 320px;
+  right: 1  0px;
   top: 42px;
 }
 /* */
