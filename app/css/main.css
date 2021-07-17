@@ -11,7 +11,6 @@
   --gray-800: 31, 41, 55;
   --gray-900: 17, 24, 39;
 
-  --pink-50: 253, 242, 248;
   --pink-100: 252, 231, 243;
   --pink-200: 251, 207, 232;
   --pink-300: 249, 168, 212;
@@ -21,6 +20,11 @@
   --pink-700: 190, 24, 93;
   --pink-800: 157, 23, 77;
   --pink-900: 131, 24, 67;
+}
+[data-theme="dark"] {
+  --white: 0, 0, 53;
+
+  --gray-900: 0, 0, 10;
 }
 
 body {
@@ -58,7 +62,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-  border: 1px solid white;
+  border: 1px solid rgb(var(--white));;
 }
 input[type="checkbox"] {
   appearance: none;
@@ -98,13 +102,13 @@ input {
 .Input {
   background: rgba(var(--gray-700), 0.5);
   backdrop-filter: blur(15px);
-  color: white;
+  color: rgb(var(--white));;
   border-radius: 0.25rem;
   height: 1.25rem;
 }
 
 .Text {
-  color: white;
+  color: rgb(var(--white));;
 }
 
 .Select {
@@ -112,7 +116,7 @@ input {
   backdrop-filter: blur(8px);
   border-radius: 0.25rem;
   padding: 0.5rem !important;
-  color: white;
+  color: rgb(var(--white));;
 }
 
 .Select:hover {
@@ -166,7 +170,7 @@ input {
 /* Listbox */
 .Listbox {
   color: #444;
-  background-color: #fff;
+  background-color: rgb(var(--white));;
   padding: 0;
   width: 100%;
   min-height: 140px;
@@ -243,7 +247,7 @@ input {
   display: inline-block;
   width: 14px;
   height: 14px;
-  color: #ddd;
+  color: rgb(var(--white));;
   text-align: center;
 }
 
@@ -307,7 +311,7 @@ input {
 
 button {
   color: #555;
-  background-color: #ddd;
+  background-color: rgb(var(--white));;
   border: 0px;
   margin: 0px; /* GNOME Web */
   padding: 5px 8px;
@@ -340,7 +344,7 @@ input.Number {
 
 select {
   color: #666;
-  background-color: #ddd;
+  background-color: rgb(var(--white));;
   border: 0px;
   text-transform: uppercase;
   cursor: pointer;
@@ -428,7 +432,7 @@ select:hover {
 }
 
 #menubar .menu.right .Text {
-  color: white;
+  color: rgb(var(--white));;
 }
 
 #menubar .menu.right .title {
@@ -439,7 +443,7 @@ select:hover {
 
 #menubar .menu .title {
   display: inline-block;
-  color: white;
+  color: rgb(var(--white));;
   margin: 0;
   padding: 8px;
   line-height: 16px;
@@ -463,18 +467,18 @@ select:hover {
 }
 
 #menubar .menu .options .option {
-  color: white;
+  color: rgb(var(--white));;
   padding: 0.4rem;
   margin: 0 !important;
 }
 
 #menubar .menu .options .option:hover {
-  color: #fff;
+  color: rgb(var(--white));;
   background-color: rgba(var(--pink-500), 1);
 }
 
 #menubar .menu .options .inactive {
-  color: #bbb;
+  color: rgb(var(--white));;
   background-color: transparent;
   padding: 5px 10px;
   margin: 0 !important;
@@ -509,19 +513,19 @@ select:hover {
 }
 
 #tabs {
-  background-color: #ddd;
+  background-color: rgb(var(--white));;
   /* border-top: 1px solid #ccc; */
 }
 
 #tabs span {
-  color: #aaa;
-  border-right: 1px solid #ccc;
+  color: rgb(var(--white));;
+  border-right: 1px solid rgb(var(--white));;
   padding: 10px;
 }
 
 #tabs span.selected {
-  color: #888;
-  background-color: #eee;
+  color: rgb(var(--white));;
+  background-color: rgb(var(--white));;
 }
 
 #toolbar {
@@ -540,7 +544,7 @@ select:hover {
 }
 
 #toolbar .Button.selected {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgb(var(--white));;
   backdrop-filter: blur(8px);
 }
 
@@ -550,7 +554,7 @@ select:hover {
 
 #toolbar button svg {
   width: 16px;
-  fill: white;
+  fill: rgb(var(--white));;
   opacity: 1;
 }
 
@@ -569,7 +573,7 @@ select:hover {
 
 .Outliner .option {
   padding: 4px;
-  color: white;
+  color: rgb(var(--white));;
   white-space: nowrap;
 }
 
@@ -582,18 +586,18 @@ select:hover {
 }
 
 .TabbedPanel .Tab {
-  color: #aaa;
+  color: rgb(var(--white));;
   /* border-right: 1px solid #ccc; */
 }
 
 .TabbedPanel .Tab.selected {
-  color: white;
+  color: rgb(var(--white));;
   background-color: rgba(var(--gray-700), 0.5);
 }
 
 .Listbox {
-  color: #444;
-  background-color: #fff;
+  color: rgba(var(--gray-900), 0.9);
+  background-color: rgb(var(--white));;
 }
 
 #viewport #cameraSelect {
