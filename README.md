@@ -6,6 +6,9 @@
 - Phạm Ngọc Trường - 18521571
 - Nguyễn Trường Thịnh - 18521447
 
+## Live demo
+
+👉 https://cs105-final-project.web.app/ 👈
 ## Hướng dẫn cài đặt
 
 ### Cách 1 (Tận dụng VSCode)
