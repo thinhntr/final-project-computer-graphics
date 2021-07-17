@@ -1,6 +1,15 @@
 import { UIPanel } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.three.js';
 
+function Checkbox(value) {
+	const body = document.body;
+	if(value) {
+		body.classList.add('dark-theme');
+	} else {
+		body.classList.remove('dark-theme');
+	};
+}
+
 function MenubarStatus( editor ) {
 
 	var strings = editor.strings;
@@ -12,17 +21,8 @@ function MenubarStatus( editor ) {
 	var darkmode = new UIBoolean( editor.config.getKey( 'darkmode' ), strings.getKey( 'menubar/status/darkmode' ) );
 	darkmode.text.setColor( '#888' );
 	darkmode.onChange( function () {
-
 		var value = this.getValue();
-
-		editor.config.setKey( 'darkmode', value );
-
-		if ( value === true ) {
-
-			editor.signals.sceneGraphChanged.dispatch();
-
-		}
-
+		Checkbox(value);
 	} );
 	container.add( darkmode );
 
