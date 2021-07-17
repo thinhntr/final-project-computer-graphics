@@ -1,7 +1,7 @@
-import * as THREE from '../../../build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
-import { RGBELoader } from '../../../examples/jsm/loaders/RGBELoader.js';
-import { TGALoader } from '../../../examples/jsm/loaders/TGALoader.js';
+import { RGBELoader } from '../../examples/jsm/loaders/RGBELoader.js';
+import { TGALoader } from '../../examples/jsm/loaders/TGALoader.js';
 
 import { UIElement, UISpan, UIDiv, UIRow, UIButton, UICheckbox, UIText, UINumber } from './ui.js';
 import { MoveObjectCommand } from '../commands/MoveObjectCommand.js';
