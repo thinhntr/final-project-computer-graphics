@@ -140,10 +140,10 @@ function SidebarScene(editor) {
   function onBackgroundChanged() {
     signals.sceneBackgroundChanged.dispatch(
       backgroundType.getValue(),
-      backgroundColor.getHexValue()
-      // backgroundTexture.getValue(),
-      // backgroundEquirectangularTexture.getValue(),
-      // environmentType.getValue()
+      backgroundColor.getHexValue(),
+      backgroundTexture.getValue(),
+      backgroundEquirectangularTexture.getValue(),
+      environmentType.getValue()
     );
   }
 
@@ -151,47 +151,65 @@ function SidebarScene(editor) {
 
   var backgroundType = new UISelect()
     .setOptions({
-      None: "",
-      Color: "Color",
+      'None': '',
+      'Color': 'Color',
+      'Texture': 'Texture',
+      'Equirectangular': 'Equirect'
     })
     .setWidth("150px");
   backgroundType.onChange(function () {
     onBackgroundChanged();
     refreshBackgroundUI();
   });
-  backgroundType.setValue("Color");
+  backgroundType.setValue( 'Color' );
 
-  backgroundRow.add(
-    new UIText(strings.getKey("sidebar/scene/background")).setWidth("90px")
-  );
-  backgroundRow.add(backgroundType);
+	backgroundRow.add( new UIText( strings.getKey( 'sidebar/scene/background' ) ).setWidth( '90px' ) );
+	backgroundRow.add( backgroundType );
 
-  var backgroundColor = new UIColor()
-    .setValue("#000000")
-    .setMarginLeft("8px")
-    .onInput(onBackgroundChanged);
-  backgroundRow.add(backgroundColor);
+	var backgroundColor = new UIColor().setValue( '#000000' ).setMarginLeft( '8px' ).onInput( onBackgroundChanged );
+	backgroundRow.add( backgroundColor );
 
-  // var backgroundTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
-  // backgroundTexture.setDisplay( 'none' );
-  // backgroundRow.add( backgroundTexture );
+	var backgroundTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
+	backgroundTexture.setDisplay( 'none' );
+	backgroundRow.add( backgroundTexture );
 
-  // var backgroundEquirectangularTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
-  // backgroundEquirectangularTexture.setDisplay( 'none' );
-  // backgroundRow.add( backgroundEquirectangularTexture );
+	var backgroundEquirectangularTexture = new UITexture().setMarginLeft( '8px' ).onChange( onBackgroundChanged );
+	backgroundEquirectangularTexture.setDisplay( 'none' );
+	backgroundRow.add( backgroundEquirectangularTexture );
 
-  container.add(backgroundRow);
+	container.add( backgroundRow );
+
+  
+	var environmentRow = new UIRow();
+
+	var environmentType = new UISelect().setOptions( {
+
+		'None': '',
+		'Background': 'Background',
+
+	} ).setWidth( '150px' );
+	environmentType.setValue( 'Background' );
+	environmentType.onChange( function () {
+
+		signals.sceneEnvironmentChanged.dispatch( environmentType.getValue() );
+
+	} );
+
+	environmentRow.add( new UIText( strings.getKey( 'sidebar/scene/environment' ) ).setWidth( '90px' ) );
+	environmentRow.add( environmentType );
+
+	container.add( environmentRow );
 
   //
 
   function refreshBackgroundUI() {
-    var type = backgroundType.getValue();
+		var type = backgroundType.getValue();
 
-    backgroundType.setWidth(type === "None" ? "150px" : "110px");
-    backgroundColor.setDisplay(type === "Color" ? "" : "none");
-    // backgroundTexture.setDisplay( type === 'Texture' ? '' : 'none' );
-    // backgroundEquirectangularTexture.setDisplay( type === 'Equirectangular' ? '' : 'none' );
-  }
+		backgroundType.setWidth( type === 'None' ? '150px' : '110px' );
+		backgroundColor.setDisplay( type === 'Color' ? '' : 'none' );
+		backgroundTexture.setDisplay( type === 'Texture' ? '' : 'none' );
+		backgroundEquirectangularTexture.setDisplay( type === 'Equirectangular' ? '' : 'none' );
+	}
 
   //
 
@@ -232,16 +250,21 @@ function SidebarScene(editor) {
       if (scene.background.isColor) {
         backgroundType.setValue("Color");
         backgroundColor.setHexValue(scene.background.getHex());
-        // backgroundTexture.setValue( null );
-        // backgroundEquirectangularTexture.setValue( null );
+        backgroundTexture.setValue( null );
+        backgroundEquirectangularTexture.setValue( null );
       }
 
       // TODO: Add Texture/EquirectangularTexture support
     } else {
       backgroundType.setValue("None");
-      // backgroundTexture.setValue( null );
-      // backgroundEquirectangularTexture.setValue( null );
+      backgroundTexture.setValue( null );
+      backgroundEquirectangularTexture.setValue( null );
     }
+    if ( scene.environment ) {
+			// TODO
+		} else {
+			environmentType.setValue( 'None' );
+		}
 
     refreshBackgroundUI();
   }
@@ -254,26 +277,26 @@ function SidebarScene(editor) {
 
   signals.sceneGraphChanged.add(refreshUI);
 
-  /*
-	signals.objectChanged.add( function ( object ) {
+  
+	// signals.objectChanged.add( function ( object ) {
 
-		var options = outliner.options;
+	// 	var options = outliner.options;
 
-		for ( var i = 0; i < options.length; i ++ ) {
+	// 	for ( var i = 0; i < options.length; i ++ ) {
 
-			var option = options[ i ];
+	// 		var option = options[ i ];
 
-			if ( option.value === object.id ) {
+	// 		if ( option.value === object.id ) {
 
-				option.innerHTML = buildHTML( object );
-				return;
+	// 			option.innerHTML = buildHTML( object );
+	// 			return;
 
-			}
+	// 		}
 
-		}
+	// 	}
 
-	} );
-	*/
+	// } );
+	
 
   signals.objectSelected.add(function (object) {
     if (ignoreObjectSelectedSignal === true) return;

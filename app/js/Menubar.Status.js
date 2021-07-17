@@ -1,7 +1,14 @@
-import * as THREE from '../js/three.module.js';
-
-import { UIPanel, UIText } from './libs/ui.js';
+import { UIPanel } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.three.js';
+
+function Checkbox(value) {
+	const body = document.body;
+	if(value) {
+		body.classList.add('dark-theme');
+	} else {
+		body.classList.remove('dark-theme');
+	};
+}
 
 function MenubarStatus( editor ) {
 
@@ -10,39 +17,14 @@ function MenubarStatus( editor ) {
 	var container = new UIPanel();
 	container.setClass( 'menu right' );
 
-	var autosave = new UIBoolean( editor.config.getKey( 'autosave' ), strings.getKey( 'menubar/status/autosave' ) );
-	autosave.text.setColor( '#888' );
-	autosave.onChange( function () {
-
+	// darkmode
+	var darkmode = new UIBoolean( editor.config.getKey( 'darkmode' ), strings.getKey( 'menubar/status/darkmode' ) );
+	darkmode.text.setColor( '#888' );
+	darkmode.onChange( function () {
 		var value = this.getValue();
-
-		editor.config.setKey( 'autosave', value );
-
-		if ( value === true ) {
-
-			editor.signals.sceneGraphChanged.dispatch();
-
-		}
-
+		Checkbox(value);
 	} );
-	container.add( autosave );
-
-	editor.signals.savingStarted.add( function () {
-
-		autosave.text.setTextDecoration( 'underline' );
-
-	} );
-
-	editor.signals.savingFinished.add( function () {
-
-		autosave.text.setTextDecoration( 'none' );
-
-	} );
-
-	var version = new UIText( 'r' + THREE.REVISION );
-	version.setClass( 'title' );
-	version.setOpacity( 0.5 );
-	container.add( version );
+	container.add( darkmode );
 
 	return container;
 

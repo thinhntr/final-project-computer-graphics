@@ -23,6 +23,12 @@
   --pink-900: 131, 24, 67;
 }
 
+body.dark-theme {
+  --white: 0, 0, 53;
+
+  --gray-900: 0, 0, 10;
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
