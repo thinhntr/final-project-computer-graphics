@@ -97,7 +97,7 @@ input {
 
 .Input {
   background: rgba(var(--gray-700), 0.5);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(15px);
   color: white;
   border-radius: 0.25rem;
   height: 1.25rem;
