@@ -59,6 +59,7 @@ function Strings( config ) {
 			'menubar/add/orthographiccamera': 'OrthographicCamera',
 
 			'menubar/status/autosave': 'autosave',
+			'menubar/status/darkmode': 'darkmode',
 
 			'menubar/play': 'Play',
 			'menubar/play/stop': 'Stop',

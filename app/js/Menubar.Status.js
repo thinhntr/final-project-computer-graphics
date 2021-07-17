@@ -1,6 +1,4 @@
-import * as THREE from '../js/three.module.js';
-
-import { UIPanel, UIText } from './libs/ui.js';
+import { UIPanel } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.three.js';
 
 function MenubarStatus( editor ) {
@@ -39,10 +37,37 @@ function MenubarStatus( editor ) {
 
 	} );
 
-	var version = new UIText( 'r' + THREE.REVISION );
-	version.setClass( 'title' );
-	version.setOpacity( 0.5 );
-	container.add( version );
+	// darkmode
+	var darkmode = new UIBoolean( editor.config.getKey( 'darkmode' ), strings.getKey( 'menubar/status/darkmode' ) );
+	darkmode.text.setColor( '#888' );
+	darkmode.onChange( function () {
+
+		var value = this.getValue();
+
+		editor.config.setKey( 'darkmode', value );
+
+		if ( value === true ) {
+
+			editor.signals.sceneGraphChanged.dispatch();
+
+		}
+
+	} );
+	container.add( darkmode );
+
+	editor.signals.savingStarted.add( function () {
+
+		darkmode.text.setTextDecoration( 'underline' );
+
+	} );
+
+	editor.signals.savingFinished.add( function () {
+
+		darkmode.text.setTextDecoration( 'none' );
+
+	} );
+
+	//
 
 	return container;
 

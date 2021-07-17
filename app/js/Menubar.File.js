@@ -44,47 +44,6 @@ function MenubarFile( editor ) {
 	} );
 	options.add( option );
 
-	var link = document.createElement( 'a' );
-	function save( blob, filename ) {
-
-		if ( link.href ) {
-
-			URL.revokeObjectURL( link.href );
-
-		}
-
-		link.href = URL.createObjectURL( blob );
-		link.download = filename || 'data.json';
-		link.dispatchEvent( new MouseEvent( 'click' ) );
-
-	}
-
-	function saveArrayBuffer( buffer, filename ) {
-
-		save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
-
-	}
-
-	function saveString( text, filename ) {
-
-		save( new Blob( [ text ], { type: 'text/plain' } ), filename );
-
-	}
-
-	function getAnimations( scene ) {
-
-		var animations = [];
-
-		scene.traverse( function ( object ) {
-
-			animations.push( ... object.animations );
-
-		} );
-
-		return animations;
-
-	}
-
 	return container;
 
 }
