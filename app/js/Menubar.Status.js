@@ -55,13 +55,13 @@ function MenubarStatus( editor ) {
 	} );
 	container.add( darkmode );
 
-	editor.signals.savingStarted.add( function () {
+	editor.signals.dark.add( function () {
 
 		darkmode.text.setTextDecoration( 'underline' );
 
 	} );
 
-	editor.signals.savingFinished.add( function () {
+	editor.signals.light.add( function () {
 
 		darkmode.text.setTextDecoration( 'none' );
 
