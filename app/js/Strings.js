@@ -252,7 +252,7 @@ function Strings( config ) {
 			'sidebar/material/vertexcolors': 'Vertex Colors',
 			'sidebar/material/vertextangents': 'Vertex Tangents',
 			'sidebar/material/matcap': 'Matcap',
-			'sidebar/material/map': 'Map',
+			'sidebar/material/map': 'Texture',
 			'sidebar/material/alphamap': 'Alpha Map',
 			'sidebar/material/bumpmap': 'Bump Map',
 			'sidebar/material/normalmap': 'Normal Map',
