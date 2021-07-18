@@ -19,6 +19,14 @@ var APP = {
     this.width = 500;
     this.height = 500;
 
+    function randFloat() {
+      const min = 0.01;
+      const max = 0.1;
+      const seed = Math.random();
+      const eps = Number.EPSILON;
+      return Math.floor((seed * (max - min) + eps) * 100) / 100;
+    }
+
     this.load = function (json) {
       var project = json.project;
 
@@ -144,6 +152,14 @@ var APP = {
         console.error(e.message || e, e.stack || "");
       }
 
+      scene.children.forEach((child, idx) => {
+        if (!child.rotation) return;
+        console.log("Current item", idx);
+        child.rotation.x += scene.mDelta[idx][0];
+        child.rotation.y += scene.mDelta[idx][1];
+        child.rotation.z += scene.mDelta[idx][2];
+      });
+
       renderer.render(scene, camera);
 
       prevTime = time;
@@ -161,6 +177,10 @@ var APP = {
       document.addEventListener("pointermove", onPointerMove);
 
       dispatch(events.start, arguments);
+
+      scene.mDelta = Array(scene.children.length)
+        .fill()
+        .map(() => Array(3).fill().map(randFloat));
 
       renderer.setAnimationLoop(animate);
     };
