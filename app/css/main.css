@@ -7,26 +7,36 @@
   --gray-400: 156, 163, 175;
   --gray-500: 107, 114, 128;
   --gray-600: 75, 85, 99;
-  --gray-700: 55, 65, 81;
-  --gray-800: 31, 41, 55;
-  --gray-900: 17, 24, 39;
+  /* --gray-700: 55, 65, 81; */
+  --gray-700: 240, 240, 240;
+  /* --gray-800: 31, 41, 55; */
+  --gray-800: 172, 171, 171;
+  /* --gray-900: 17, 24, 39; */
+  --gray-900: 243, 243, 243;
 
   --pink-50: 253, 242, 248;
   --pink-100: 252, 231, 243;
   --pink-200: 251, 207, 232;
   --pink-300: 249, 168, 212;
   --pink-400: 244, 114, 182;
-  --pink-500: 236, 72, 153;
-  --pink-600: 219, 39, 119;
-  --pink-700: 190, 24, 93;
+  --pink-500: 64, 64, 64;
+  --pink-600: 120, 120, 120;
+  --pink-700: 64, 64, 64;
   --pink-800: 157, 23, 77;
   --pink-900: 131, 24, 67;
+
+  --title: 32,32,32;
 }
 
 body.dark-theme {
   --white: 0, 0, 53;
 
+  --gray-700: 120,120,120;
   --gray-900: 0, 0, 10;
+
+  --pink-500: 120,120,120;
+
+  --title: 255,255,255;
 }
 
 body {
@@ -104,13 +114,13 @@ input {
 .Input {
   background: rgba(var(--gray-700), 0.5);
   backdrop-filter: blur(8px);
-  color: white;
+  color: rgba(var(--title));
   border-radius: 0.25rem;
   height: 1.25rem;
 }
 
 .Text {
-  color: white;
+  color: rgba(var(--title));
 }
 
 .Select {
@@ -118,7 +128,7 @@ input {
   backdrop-filter: blur(8px);
   border-radius: 0.25rem;
   padding: 0.5rem !important;
-  color: white;
+  color: rgba(var(--title));
 }
 
 .Select:hover {
@@ -154,11 +164,11 @@ input {
   position: relative;
   display: block;
   width: 100%;
-  background: rgba(var(--gray-900), 0.5);
+  background: rgba(var(--gray-900), 0.2);
 }
 
 .TabbedPanel .Tabs .Tab {
-  padding: 10px;
+  padding: 7.5px;
   text-transform: uppercase;
 }
 
@@ -428,12 +438,13 @@ select:hover {
 #menubar .menu.right {
   float: right;
   cursor: auto;
-  padding-right: 0;
+  padding: 5px;
   text-align: right;
+  line-height: 16px;
 }
 
 #menubar .menu.right .Text {
-  color: white;
+  color: rgba(var(--title)) !important;
 }
 
 #menubar .menu.right .title {
@@ -444,7 +455,7 @@ select:hover {
 
 #menubar .menu .title {
   display: inline-block;
-  color: white;
+  color: rgba(var(--title));
   margin: 0;
   padding: 8px;
   line-height: 16px;
@@ -570,11 +581,15 @@ select:hover {
   overflow: auto;
   resize: vertical;
   outline: none !important;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .Outliner .option {
   padding: 4px;
-  color: white;
+  color: rgba(var(--title));
   white-space: nowrap;
 }
 
@@ -587,13 +602,13 @@ select:hover {
 }
 
 .TabbedPanel .Tab {
-  color: #aaa;
+  color: rgba(var(--title));
   /* border-right: 1px solid #ccc; */
 }
 
 .TabbedPanel .Tab.selected {
-  color: white;
-  background-color: rgba(var(--gray-700), 0.5);
+  color: rgba(var(--title));
+  background-color: rgba(var(--pink-700), 0.5);
 }
 
 .Listbox {
