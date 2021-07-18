@@ -154,7 +154,6 @@ var APP = {
 
       scene.children.forEach((child, idx) => {
         if (!child.rotation) return;
-        console.log("Current item", idx);
         child.rotation.x += scene.mDelta[idx][0];
         child.rotation.y += scene.mDelta[idx][1];
         child.rotation.z += scene.mDelta[idx][2];
