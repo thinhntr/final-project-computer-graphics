@@ -26,6 +26,8 @@
   --pink-900: 131, 24, 67;
 
   --title: 32,32,32;
+
+  --highlight: 32,32,32;
 }
 
 body.dark-theme {
@@ -37,6 +39,8 @@ body.dark-theme {
   --pink-500: 120,120,120;
 
   --title: 255,255,255;
+
+  --highlight: 220,220,220;
 }
 
 body {
@@ -594,11 +598,11 @@ select:hover {
 }
 
 .Outliner .option:hover {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: rgba(var(--highlight),0.05);
 }
 
 .Outliner .option.active {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(var(--highlight),0.2);
 }
 
 .TabbedPanel .Tab {
@@ -623,18 +627,64 @@ select:hover {
 }
 /* */
 
-@media all and (max-width: 600px) {
-  #resizer {
-    display: none;
+@media all and (max-width: 700px) {
+
+  :root {
+    --white: 255, 255, 255;
+    --gray-50: 249, 250, 251;
+    --gray-100: 243, 244, 246;
+    --gray-200: 229, 231, 235;
+    --gray-300: 209, 213, 219;
+    --gray-400: 156, 163, 175;
+    --gray-500: 107, 114, 128;
+    --gray-600: 225, 225, 225;
+    /* --gray-700: 55, 65, 81; */
+    --gray-700: 140, 140, 140;
+    /* --gray-800: 31, 41, 55; */
+    --gray-800: 172, 171, 171;
+    /* --gray-900: 17, 24, 39; */
+    --gray-900: 192, 192, 205;
+    --gray-1000: 180,180,180;
+  
+    --pink-50: 253, 242, 248;
+    --pink-100: 252, 231, 243;
+    --pink-200: 251, 207, 232;
+    --pink-300: 249, 168, 212;
+    --pink-400: 244, 114, 182;
+    --pink-500: 160, 160, 160;
+    --pink-600: 120, 120, 120;
+    --pink-700: 64, 64, 64;
+    --pink-800: 157, 23, 77;
+    --pink-900: 131, 24, 67;
+  
+    --title: 32,32,32;
+  
+    --highlight: 32,32,32;
+  }
+  
+  body.dark-theme {
+    --white: 0, 0, 53;
+  
+
+    --gray-700: 120,120,120;
+    --gray-900: 0, 0, 10;
+  
+    --pink-500: 120,120,120;
+    --pink-600: 170, 170, 170;
+
+    --title: 255,255,255;
+  
+    --highlight: 220,220,220;
+  }
+  
+
+
+  #menubar {
+    left: 0px;
+    right: 0px;
+    width: auto;
   }
 
-  #menubar .menu .options {
-    max-height: calc(100% - 372px);
-  }
-
-  #menubar .menu.right {
-    display: none;
-  }
 
   #viewport {
     left: 0;
@@ -663,4 +713,45 @@ select:hover {
     top: calc(100% - 320px);
     bottom: 0;
   }
+
+  #toolbar {
+    position: absolute;
+    left: 10px;
+    top: 45px;
+    bottom: auto;
+    width: 32px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+
+  .Select {
+    background: rgba(var(--gray-700), 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 0.25rem;
+    padding: 0.5rem !important;
+    color: rgba(var(--title));
+}
+
+.Outliner {
+  color: #444;
+  background-color: rgba(var(--gray-1000), 0.5);
+  padding: 0;
+  width: 100%;
+  height: 140px;
+  font-size: 12px;
+  cursor: default;
+  overflow: auto;
+  resize: vertical;
+  outline: none !important;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.Select:hover {
+  background-color: rgba(var(--gray-600), 0.5);
+  backdrop-filter: blur(8px);
+}
+
+
 }
