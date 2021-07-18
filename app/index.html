@@ -56,11 +56,9 @@
       import { Editor } from "./js/Editor.js";
       import { Viewport } from "./js/Viewport.js";
       import { Toolbar } from "./js/Toolbar.js";
-      // import { Script } from './js/Script.js';
       import { Player } from "./js/Player.js";
       import { Sidebar } from "./js/Sidebar.js";
       import { Menubar } from "./js/Menubar.js";
-      import { Resizer } from "./js/Resizer.js";
       import { VRButton } from "./examples/jsm/webxr/VRButton.js";
 
       window.URL = window.URL || window.webkitURL;
@@ -85,9 +83,6 @@
       var toolbar = new Toolbar(editor);
       document.body.appendChild(toolbar.dom);
 
-      // var script = new Script( editor );
-      // document.body.appendChild( script.dom );
-
       var player = new Player(editor);
       document.body.appendChild(player.dom);
 
@@ -97,8 +92,8 @@
       var menubar = new Menubar(editor);
       document.body.appendChild(menubar.dom);
 
-      var resizer = new Resizer(editor);
-      document.body.appendChild(resizer.dom);
+      // var resizer = new Resizer(editor);
+      // document.body.appendChild(resizer.dom);
 
       //
 
