@@ -423,7 +423,7 @@ select:hover {
 }
 
 #menubar .menu:hover {
-  background: rgba(var(--pink-5 00), 1);
+  background: rgba(var(--pink-500), 1);
 }
 
 #menubar .menu.right {
@@ -604,7 +604,7 @@ select:hover {
 
 #viewport #cameraSelect {
   position: fixed;
-  right: 1  0px;
+  right: 10px;
   top: 42px;
 }
 /* */
