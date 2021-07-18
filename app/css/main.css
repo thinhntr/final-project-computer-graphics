@@ -394,8 +394,8 @@ select:hover {
 #player {
   position: absolute;
   top: 32px;
-  left: 0;
-  right: 300px;
+  left: 300px;
+  right: 0;
   bottom: 0;
 }
 
