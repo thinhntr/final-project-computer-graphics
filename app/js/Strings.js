@@ -64,12 +64,11 @@ function Strings( config ) {
 			'menubar/play/stop': 'Stop',
 			'menubar/play/play': 'Play',
 
-			'menubar/examples': 'Examples',
-			'menubar/examples/Arkanoid': 'Arkanoid',
-			'menubar/examples/Camera': 'Camera',
-			'menubar/examples/Particles': 'Particles',
-			'menubar/examples/Pong': 'Pong',
-			'menubar/examples/Shaders': 'Shaders',
+			'menubar/ExAnimation': 'ExAnimation',
+			'menubar/ExAnimation/Animation1': 'Animation 1',
+			'menubar/ExAnimation/Animation2': 'Animation 2',
+			'menubar/ExAnimation/Animation3': 'Animation 3',
+			
 
 			'menubar/view': 'View',
 			'menubar/view/fullscreen': 'Fullscreen',
