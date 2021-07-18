@@ -1,263 +1,239 @@
 var APP = {
+  Player: function () {
+    var renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio); // TODO: Use player.setPixelRatio()
+    renderer.outputEncoding = THREE.sRGBEncoding;
+
+    var loader = new THREE.ObjectLoader();
+    var camera, scene;
+
+    var vrButton = VRButton.createButton(renderer); // eslint-disable-line no-undef
+
+    var events = {};
+
+    var dom = document.createElement("div");
+    dom.appendChild(renderer.domElement);
+
+    this.dom = dom;
+
+    this.width = 500;
+    this.height = 500;
+
+    function randFloat() {
+      const min = 0.01;
+      const max = 0.1;
+      const seed = Math.random();
+      const eps = Number.EPSILON;
+      return Math.floor((seed * (max - min) + eps) * 100) / 100;
+    }
+
+    this.load = function (json) {
+      var project = json.project;
+
+      if (project.vr !== undefined) renderer.xr.enabled = project.vr;
+      if (project.shadows !== undefined)
+        renderer.shadowMap.enabled = project.shadows;
+      if (project.shadowType !== undefined)
+        renderer.shadowMap.type = project.shadowType;
+      if (project.toneMapping !== undefined)
+        renderer.toneMapping = project.toneMapping;
+      if (project.toneMappingExposure !== undefined)
+        renderer.toneMappingExposure = project.toneMappingExposure;
+      if (project.physicallyCorrectLights !== undefined)
+        renderer.physicallyCorrectLights = project.physicallyCorrectLights;
+
+      this.setScene(loader.parse(json.scene));
+      this.setCamera(loader.parse(json.camera));
+
+      events = {
+        init: [],
+        start: [],
+        stop: [],
+        keydown: [],
+        keyup: [],
+        pointerdown: [],
+        pointerup: [],
+        pointermove: [],
+        update: [],
+      };
+
+      var scriptWrapParams = "player,renderer,scene,camera";
+      var scriptWrapResultObj = {};
+
+      for (var eventKey in events) {
+        scriptWrapParams += "," + eventKey;
+        scriptWrapResultObj[eventKey] = eventKey;
+      }
+
+      var scriptWrapResult = JSON.stringify(scriptWrapResultObj).replace(
+        /\"/g,
+        ""
+      );
+
+      for (var uuid in json.scripts) {
+        var object = scene.getObjectByProperty("uuid", uuid, true);
+
+        if (object === undefined) {
+          console.warn("APP.Player: Script without object.", uuid);
+          continue;
+        }
+
+        var scripts = json.scripts[uuid];
+
+        for (var i = 0; i < scripts.length; i++) {
+          var script = scripts[i];
+
+          var functions = new Function(
+            scriptWrapParams,
+            script.source + "\nreturn " + scriptWrapResult + ";"
+          ).bind(object)(this, renderer, scene, camera);
+
+          for (var name in functions) {
+            if (functions[name] === undefined) continue;
+
+            if (events[name] === undefined) {
+              console.warn("APP.Player: Event type not supported (", name, ")");
+              continue;
+            }
+
+            events[name].push(functions[name].bind(object));
+          }
+        }
+      }
+
+      dispatch(events.init, arguments);
+    };
 
-	Player: function () {
+    this.setCamera = function (value) {
+      camera = value;
+      camera.aspect = this.width / this.height;
+      camera.updateProjectionMatrix();
+    };
 
-		var renderer = new THREE.WebGLRenderer( { antialias: true } );
-		renderer.setPixelRatio( window.devicePixelRatio ); // TODO: Use player.setPixelRatio()
-		renderer.outputEncoding = THREE.sRGBEncoding;
+    this.setScene = function (value) {
+      scene = value;
+    };
 
-		var loader = new THREE.ObjectLoader();
-		var camera, scene;
+    this.setPixelRatio = function (pixelRatio) {
+      renderer.setPixelRatio(pixelRatio);
+    };
 
-		var vrButton = VRButton.createButton( renderer ); // eslint-disable-line no-undef
+    this.setSize = function (width, height) {
+      this.width = width;
+      this.height = height;
 
-		var events = {};
+      if (camera) {
+        camera.aspect = this.width / this.height;
+        camera.updateProjectionMatrix();
+      }
 
-		var dom = document.createElement( 'div' );
-		dom.appendChild( renderer.domElement );
+      if (renderer) {
+        renderer.setSize(width, height);
+      }
+    };
 
-		this.dom = dom;
+    function dispatch(array, event) {
+      for (var i = 0, l = array.length; i < l; i++) {
+        array[i](event);
+      }
+    }
 
-		this.width = 500;
-		this.height = 500;
+    var time, startTime, prevTime;
 
-		this.load = function ( json ) {
+    function animate() {
+      time = performance.now();
 
-			var project = json.project;
+      try {
+        dispatch(events.update, {
+          time: time - startTime,
+          delta: time - prevTime,
+        });
+      } catch (e) {
+        console.error(e.message || e, e.stack || "");
+      }
 
-			if ( project.vr !== undefined ) renderer.xr.enabled = project.vr;
-			if ( project.shadows !== undefined ) renderer.shadowMap.enabled = project.shadows;
-			if ( project.shadowType !== undefined ) renderer.shadowMap.type = project.shadowType;
-			if ( project.toneMapping !== undefined ) renderer.toneMapping = project.toneMapping;
-			if ( project.toneMappingExposure !== undefined ) renderer.toneMappingExposure = project.toneMappingExposure;
-			if ( project.physicallyCorrectLights !== undefined ) renderer.physicallyCorrectLights = project.physicallyCorrectLights;
+      scene.children.forEach((child, idx) => {
+        if (!child.rotation) return;
+        console.log("Current item", idx);
+        child.rotation.x += scene.mDelta[idx][0];
+        child.rotation.y += scene.mDelta[idx][1];
+        child.rotation.z += scene.mDelta[idx][2];
+      });
 
-			this.setScene( loader.parse( json.scene ) );
-			this.setCamera( loader.parse( json.camera ) );
+      renderer.render(scene, camera);
 
-			events = {
-				init: [],
-				start: [],
-				stop: [],
-				keydown: [],
-				keyup: [],
-				pointerdown: [],
-				pointerup: [],
-				pointermove: [],
-				update: []
-			};
+      prevTime = time;
+    }
 
-			var scriptWrapParams = 'player,renderer,scene,camera';
-			var scriptWrapResultObj = {};
+    this.play = function () {
+      if (renderer.xr.enabled) dom.append(vrButton);
 
-			for ( var eventKey in events ) {
+      startTime = prevTime = performance.now();
 
-				scriptWrapParams += ',' + eventKey;
-				scriptWrapResultObj[ eventKey ] = eventKey;
+      document.addEventListener("keydown", onKeyDown);
+      document.addEventListener("keyup", onKeyUp);
+      document.addEventListener("pointerdown", onPointerDown);
+      document.addEventListener("pointerup", onPointerUp);
+      document.addEventListener("pointermove", onPointerMove);
 
-			}
+      dispatch(events.start, arguments);
 
-			var scriptWrapResult = JSON.stringify( scriptWrapResultObj ).replace( /\"/g, '' );
+      scene.mDelta = Array(scene.children.length)
+        .fill()
+        .map(() => Array(3).fill().map(randFloat));
 
-			for ( var uuid in json.scripts ) {
+      renderer.setAnimationLoop(animate);
+    };
 
-				var object = scene.getObjectByProperty( 'uuid', uuid, true );
+    this.stop = function () {
+      if (renderer.xr.enabled) vrButton.remove();
 
-				if ( object === undefined ) {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("keyup", onKeyUp);
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener("pointermove", onPointerMove);
 
-					console.warn( 'APP.Player: Script without object.', uuid );
-					continue;
+      dispatch(events.stop, arguments);
 
-				}
+      renderer.setAnimationLoop(null);
+    };
 
-				var scripts = json.scripts[ uuid ];
+    this.render = function (time) {
+      dispatch(events.update, { time: time * 1000, delta: 0 /* TODO */ });
 
-				for ( var i = 0; i < scripts.length; i ++ ) {
+      renderer.render(scene, camera);
+    };
 
-					var script = scripts[ i ];
+    this.dispose = function () {
+      renderer.dispose();
 
-					var functions = ( new Function( scriptWrapParams, script.source + '\nreturn ' + scriptWrapResult + ';' ).bind( object ) )( this, renderer, scene, camera );
+      camera = undefined;
+      scene = undefined;
+    };
 
-					for ( var name in functions ) {
+    //
 
-						if ( functions[ name ] === undefined ) continue;
+    function onKeyDown(event) {
+      dispatch(events.keydown, event);
+    }
 
-						if ( events[ name ] === undefined ) {
+    function onKeyUp(event) {
+      dispatch(events.keyup, event);
+    }
 
-							console.warn( 'APP.Player: Event type not supported (', name, ')' );
-							continue;
+    function onPointerDown(event) {
+      dispatch(events.pointerdown, event);
+    }
 
-						}
+    function onPointerUp(event) {
+      dispatch(events.pointerup, event);
+    }
 
-						events[ name ].push( functions[ name ].bind( object ) );
-
-					}
-
-				}
-
-			}
-
-			dispatch( events.init, arguments );
-
-		};
-
-		this.setCamera = function ( value ) {
-
-			camera = value;
-			camera.aspect = this.width / this.height;
-			camera.updateProjectionMatrix();
-
-		};
-
-		this.setScene = function ( value ) {
-
-			scene = value;
-
-		};
-
-		this.setPixelRatio = function ( pixelRatio ) {
-
-			renderer.setPixelRatio( pixelRatio );
-
-		};
-
-		this.setSize = function ( width, height ) {
-
-			this.width = width;
-			this.height = height;
-
-			if ( camera ) {
-
-				camera.aspect = this.width / this.height;
-				camera.updateProjectionMatrix();
-
-			}
-
-			if ( renderer ) {
-
-				renderer.setSize( width, height );
-
-			}
-
-		};
-
-		function dispatch( array, event ) {
-
-			for ( var i = 0, l = array.length; i < l; i ++ ) {
-
-				array[ i ]( event );
-
-			}
-
-		}
-
-		var time, startTime, prevTime;
-
-		function animate() {
-
-			time = performance.now();
-
-			try {
-
-				dispatch( events.update, { time: time - startTime, delta: time - prevTime } );
-
-			} catch ( e ) {
-
-				console.error( ( e.message || e ), ( e.stack || '' ) );
-
-			}
-
-			renderer.render( scene, camera );
-
-			prevTime = time;
-
-		}
-
-		this.play = function () {
-
-			if ( renderer.xr.enabled ) dom.append( vrButton );
-
-			startTime = prevTime = performance.now();
-
-			document.addEventListener( 'keydown', onKeyDown );
-			document.addEventListener( 'keyup', onKeyUp );
-			document.addEventListener( 'pointerdown', onPointerDown );
-			document.addEventListener( 'pointerup', onPointerUp );
-			document.addEventListener( 'pointermove', onPointerMove );
-
-			dispatch( events.start, arguments );
-
-			renderer.setAnimationLoop( animate );
-
-		};
-
-		this.stop = function () {
-
-			if ( renderer.xr.enabled ) vrButton.remove();
-
-			document.removeEventListener( 'keydown', onKeyDown );
-			document.removeEventListener( 'keyup', onKeyUp );
-			document.removeEventListener( 'pointerdown', onPointerDown );
-			document.removeEventListener( 'pointerup', onPointerUp );
-			document.removeEventListener( 'pointermove', onPointerMove );
-
-			dispatch( events.stop, arguments );
-
-			renderer.setAnimationLoop( null );
-
-		};
-
-		this.render = function ( time ) {
-
-			dispatch( events.update, { time: time * 1000, delta: 0 /* TODO */ } );
-
-			renderer.render( scene, camera );
-
-		};
-
-		this.dispose = function () {
-
-			renderer.dispose();
-
-			camera = undefined;
-			scene = undefined;
-
-		};
-
-		//
-
-		function onKeyDown( event ) {
-
-			dispatch( events.keydown, event );
-
-		}
-
-		function onKeyUp( event ) {
-
-			dispatch( events.keyup, event );
-
-		}
-
-		function onPointerDown( event ) {
-
-			dispatch( events.pointerdown, event );
-
-		}
-
-		function onPointerUp( event ) {
-
-			dispatch( events.pointerup, event );
-
-		}
-
-		function onPointerMove( event ) {
-
-			dispatch( events.pointermove, event );
-
-		}
-
-	}
-
+    function onPointerMove(event) {
+      dispatch(events.pointermove, event);
+    }
+  },
 };
 
 export { APP };
