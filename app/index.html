@@ -102,59 +102,6 @@
 
       //
 
-      editor.storage.init(function () {
-        editor.storage.get(function (state) {
-          if (isLoadingFromHash) return;
-
-          if (state !== undefined) {
-            editor.fromJSON(state);
-          }
-
-          var selected = editor.config.getKey("selected");
-
-          if (selected !== undefined) {
-            editor.selectByUuid(selected);
-          }
-        });
-
-        //
-
-        var timeout;
-
-        function saveState() {
-          if (editor.config.getKey("autosave") === false) {
-            return;
-          }
-
-          clearTimeout(timeout);
-
-          timeout = setTimeout(function () {
-            editor.signals.savingStarted.dispatch();
-
-            timeout = setTimeout(function () {
-              editor.storage.set(editor.toJSON());
-
-              editor.signals.savingFinished.dispatch();
-            }, 100);
-          }, 1000);
-        }
-
-        var signals = editor.signals;
-
-        signals.geometryChanged.add(saveState);
-        signals.objectAdded.add(saveState);
-        signals.objectChanged.add(saveState);
-        signals.objectRemoved.add(saveState);
-        signals.materialChanged.add(saveState);
-        signals.sceneBackgroundChanged.add(saveState);
-        signals.sceneFogChanged.add(saveState);
-        signals.sceneGraphChanged.add(saveState);
-        signals.scriptChanged.add(saveState);
-        signals.historyChanged.add(saveState);
-      });
-
-      //
-
       document.addEventListener(
         "dragover",
         function (event) {
