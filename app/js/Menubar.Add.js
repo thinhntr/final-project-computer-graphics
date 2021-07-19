@@ -175,7 +175,7 @@ function MenubarAdd( editor ) {
 	option.setTextContent( strings.getKey( 'menubar/add/sphere' ) );
 	option.onClick( function () {
 
-		var geometry = new THREE.SphereGeometry( 1, 8, 6, 0, Math.PI * 2, 0, Math.PI );
+		var geometry = new THREE.SphereGeometry( 3, 32, 32 );
 		var mesh = new THREE.Mesh( geometry, new THREE.MeshStandardMaterial() );
 		mesh.name = 'Sphere';
 
