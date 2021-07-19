@@ -21,7 +21,7 @@ var APP = {
 
     function randFloat() {
       const min = 0.01;
-      const max = 0.1;
+      const max = 0.07;
       const seed = Math.random();
       const eps = Number.EPSILON;
       return Math.floor((seed * (max - min) + eps) * 100) / 100;
