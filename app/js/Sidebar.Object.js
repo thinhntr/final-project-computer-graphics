@@ -11,9 +11,11 @@ import {
   UITextArea,
   UIText,
   UINumber,
+  UISelect,
 } from "./libs/ui.js";
 import { UIBoolean } from "./libs/ui.three.js";
 
+import { AddObjectCommand } from "./commands/AddObjectCommand.js";
 import { SetUuidCommand } from "./commands/SetUuidCommand.js";
 import { SetValueCommand } from "./commands/SetValueCommand.js";
 import { SetPositionCommand } from "./commands/SetPositionCommand.js";
@@ -76,8 +78,9 @@ function SidebarObject(editor) {
 
   // type
 
+  let options = {};
   var objectTypeRow = new UIRow();
-  var objectType = new UIText();
+  var objectType = new UISelect().setOptions(options).onChange(update);
 
   objectTypeRow.add(
     new UIText(strings.getKey("sidebar/object/type")).setWidth("90px")
@@ -518,26 +521,52 @@ function SidebarObject(editor) {
         objectPositionY.getValue(),
         objectPositionZ.getValue()
       );
-      if (object.position.distanceTo(newPosition) >= 0.01) {
-        editor.execute(new SetPositionCommand(editor, object, newPosition));
-      }
 
       var newRotation = new THREE.Euler(
         objectRotationX.getValue() * THREE.MathUtils.DEG2RAD,
         objectRotationY.getValue() * THREE.MathUtils.DEG2RAD,
         objectRotationZ.getValue() * THREE.MathUtils.DEG2RAD
       );
+      var newScale = new THREE.Vector3(
+        objectScaleX.getValue(),
+        objectScaleY.getValue(),
+        objectScaleZ.getValue()
+      );
+
+      const newObjectType = objectType.getValue();
+      if (newObjectType && newObjectType !== object.type) {
+        const geometry = object.geometry;
+        let material = null;
+        let newobj = null;
+        if (newObjectType === "Mesh") {
+          material = new THREE.MeshStandardMaterial();
+          newobj = new THREE.Mesh(geometry, material);
+        } else if (newObjectType === "Points") {
+          material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.05 });
+          newobj = new THREE.Points(geometry, material);
+        } else {
+          material = new THREE.LineBasicMaterial({
+            color: 0xffffff,
+            linewidth: 0.5,
+          });
+          newobj = new THREE.Line(geometry, material);
+        }
+        newobj.name = object.name;
+        editor.execute(new AddObjectCommand(editor, newobj));
+        editor.removeObject(object);
+        object = newobj;
+      }
+
+      if (object.position.distanceTo(newPosition) >= 0.01) {
+        editor.execute(new SetPositionCommand(editor, object, newPosition));
+      }
+
       if (
         object.rotation.toVector3().distanceTo(newRotation.toVector3()) >= 0.01
       ) {
         editor.execute(new SetRotationCommand(editor, object, newRotation));
       }
 
-      var newScale = new THREE.Vector3(
-        objectScaleX.getValue(),
-        objectScaleY.getValue(),
-        objectScaleZ.getValue()
-      );
       if (object.scale.distanceTo(newScale) >= 0.01) {
         editor.execute(new SetScaleCommand(editor, object, newScale));
       }
@@ -898,6 +927,12 @@ function SidebarObject(editor) {
   });
 
   function updateUI(object) {
+    if (["Mesh", "Line", "Points"].includes(object.type)) {
+      options = { Mesh: "Mesh", Line: "Line", Points: "Points" };
+    } else {
+      options = { [object.type]: object.type };
+    }
+    objectType.setOptions(options);
     objectType.setValue(object.type);
 
     objectUUID.setValue(object.uuid);
