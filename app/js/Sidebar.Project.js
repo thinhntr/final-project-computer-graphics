@@ -1,8 +1,6 @@
 import { UIPanel, UIRow, UIInput, UICheckbox, UIText, UISpan } from './libs/ui.js';
 
-/* import { SidebarProjectMaterials } from './Sidebar.Project.Materials.js'; */
 import { SidebarProjectRenderer } from './Sidebar.Project.Renderer.js';
-// import { SidebarProjectVideo } from './Sidebar.Project.Video.js';
 
 function SidebarProject( editor ) {
 
@@ -61,14 +59,8 @@ function SidebarProject( editor ) {
 
 	//
 
-	/* container.add( new SidebarProjectMaterials( editor ) ); */
 	container.add( new SidebarProjectRenderer( editor ) );
 
-	// if ( 'SharedArrayBuffer' in window ) {
-
-	// 	container.add( new SidebarProjectVideo( editor ) );
-
-	// }
 
 	// Signals
 

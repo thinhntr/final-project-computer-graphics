@@ -17,7 +17,6 @@ var LoaderUtils = {
 
 	getFilesFromItemList: function ( items, onDone ) {
 
-		// TOFIX: setURLModifier() breaks when the file being loaded is not in root
 
 		var itemsCount = 0;
 		var itemsTotal = 0;

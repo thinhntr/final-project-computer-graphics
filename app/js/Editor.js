@@ -333,7 +333,6 @@ Editor.prototype = {
         } else if (object.isSkinnedMesh) {
           helper = new THREE.SkeletonHelper(object.skeleton.bones[0]);
         } else {
-          // no helper for this object type
           return;
         }
 

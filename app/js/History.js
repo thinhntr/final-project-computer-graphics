@@ -47,7 +47,6 @@ History.prototype = {
 
 		if ( isUpdatableCmd && cmd.type === 'SetScriptValueCommand' ) {
 
-			// When the cmd.type is "SetScriptValueCommand" the timeDifference is ignored
 
 			lastCmd.update( cmd );
 			cmd = lastCmd;
@@ -58,8 +57,6 @@ History.prototype = {
 			cmd = lastCmd;
 
 		} else {
-
-			// the command is not updatable and is added as a new part of the history
 
 			this.undos.push( cmd );
 			cmd.id = ++ this.idCounter;
@@ -72,13 +69,13 @@ History.prototype = {
 
 		if ( this.config.getKey( 'settings/history' ) ) {
 
-			cmd.json = cmd.toJSON();	// serialize the cmd immediately after execution and append the json to the cmd
+			cmd.json = cmd.toJSON();	
 
 		}
 
 		this.lastCmdTime = new Date();
 
-		// clearing all the redo-commands
+
 
 		this.redos = [];
 		this.editor.signals.historyChanged.dispatch( cmd );
@@ -207,23 +204,22 @@ History.prototype = {
 			cmd.id = cmdJSON.id;
 			cmd.name = cmdJSON.name;
 			this.undos.push( cmd );
-			this.idCounter = ( cmdJSON.id > this.idCounter ) ? cmdJSON.id : this.idCounter; // set last used idCounter
+			this.idCounter = ( cmdJSON.id > this.idCounter ) ? cmdJSON.id : this.idCounter; 
 
 		}
 
 		for ( var i = 0; i < json.redos.length; i ++ ) {
 
 			var cmdJSON = json.redos[ i ];
-			var cmd = new Commands[ cmdJSON.type ]( this.editor ); // creates a new object of type "json.type"
+			var cmd = new Commands[ cmdJSON.type ]( this.editor ); 
 			cmd.json = cmdJSON;
 			cmd.id = cmdJSON.id;
 			cmd.name = cmdJSON.name;
 			this.redos.push( cmd );
-			this.idCounter = ( cmdJSON.id > this.idCounter ) ? cmdJSON.id : this.idCounter; // set last used idCounter
+			this.idCounter = ( cmdJSON.id > this.idCounter ) ? cmdJSON.id : this.idCounter; 
 
 		}
 
-		// Select the last executed undo-command
 		this.editor.signals.historyChanged.dispatch( this.undos[ this.undos.length - 1 ] );
 
 	},
@@ -284,13 +280,6 @@ History.prototype = {
 	},
 
 	enableSerialization: function ( id ) {
-
-		/**
-		 * because there might be commands in this.undos and this.redos
-		 * which have not been serialized with .toJSON() we go back
-		 * to the oldest command and redo one command after the other
-		 * while also calling .toJSON() on them.
-		 */
 
 		this.goToState( - 1 );
 
