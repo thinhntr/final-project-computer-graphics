@@ -23,11 +23,6 @@ function Editor() {
     startPlayer: new Signal(),
     stopPlayer: new Signal(),
 
-    // vr
-
-    toggleVR: new Signal(),
-    exitedVR: new Signal(),
-
     // notifications
 
     editorCleared: new Signal(),
@@ -512,7 +507,6 @@ Editor.prototype = {
       project: {
         shadows: this.config.getKey("project/renderer/shadows"),
         shadowType: this.config.getKey("project/renderer/shadowType"),
-        vr: this.config.getKey("project/vr"),
         physicallyCorrectLights: this.config.getKey(
           "project/renderer/physicallyCorrectLights"
         ),
