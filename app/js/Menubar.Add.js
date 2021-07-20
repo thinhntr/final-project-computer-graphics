@@ -4,7 +4,7 @@ import { UIPanel, UIRow, UIHorizontalRule } from './libs/ui.js';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
 
-import { TeapotGeometry } from '../examples/jsm/geometries/TeapotGeometry.js';
+import { TeapotGeometry } from './geometries/TeapotGeometry.js';
 
 function MenubarAdd( editor ) {
 

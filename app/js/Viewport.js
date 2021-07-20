@@ -1,6 +1,6 @@
 import * as THREE from '../js/three.module.js';
 
-import { TransformControls } from '../examples/jsm/controls/TransformControls.js';
+import { TransformControls } from './controls/TransformControls.js';
 
 import { UIPanel } from './libs/ui.js';
 

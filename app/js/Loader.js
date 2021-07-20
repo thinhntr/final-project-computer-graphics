@@ -1,13 +1,13 @@
-import * as THREE from '../js/three.module.js';
+import * as THREE from './three.module.js';
 
-import { TGALoader } from '../examples/jsm/loaders/TGALoader.js';
+import { TGALoader } from './loaders/TGALoader.js';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
 import { SetSceneCommand } from './commands/SetSceneCommand.js';
 
 import { LoaderUtils } from './LoaderUtils.js';
 
-import { unzipSync, strFromU8 } from '../examples/jsm/libs/fflate.module.js';
+import { unzipSync, strFromU8 } from './fflate.module.js';
 
 function Loader( editor ) {
 
