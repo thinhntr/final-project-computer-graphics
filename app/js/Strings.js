@@ -64,12 +64,6 @@ function Strings( config ) {
 			'menubar/play/stop': 'Stop',
 			'menubar/play/play': 'Play',
 
-			'menubar/ExAnimation': 'ExAnimation',
-			'menubar/ExAnimation/Animation1': 'Animation 1',
-			'menubar/ExAnimation/Animation2': 'Animation 2',
-			'menubar/ExAnimation/Animation3': 'Animation 3',
-			
-
 			'menubar/view': 'View',
 			'menubar/view/fullscreen': 'Fullscreen',
 
