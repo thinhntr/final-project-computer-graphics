@@ -12,8 +12,6 @@ import { SetPositionCommand } from './commands/SetPositionCommand.js';
 import { SetRotationCommand } from './commands/SetRotationCommand.js';
 import { SetScaleCommand } from './commands/SetScaleCommand.js';
 
-import { RoomEnvironment } from '../examples/jsm/environments/RoomEnvironment.js';
-
 function Viewport( editor ) {
 
 	var signals = editor.signals;
@@ -595,9 +593,6 @@ function Viewport( editor ) {
 				break;
 			case 'Background':
 				scene.environment = pmremTexture;
-				break;
-			case 'ModelViewer':
-				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 				break;
 
 		}
