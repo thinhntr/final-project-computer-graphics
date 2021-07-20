@@ -45,13 +45,6 @@
 
       function onWindowResize() {
         editor.signals.windowResize.dispatch();
-        editor.signals.sceneBackgroundChanged.dispatch(
-        'Color',
-        0xafafaf,
-        '',
-        '',
-        ''
-        );
       }
 
       window.addEventListener("resize", onWindowResize, false);

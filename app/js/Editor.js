@@ -457,7 +457,10 @@ Editor.prototype = {
 
     this.scene.name = "Scene";
     this.scene.userData = {};
-    this.scene.background = null;
+    this.scene.background = document.getElementById("isDarkMode").children[0]
+      .checked
+      ? new THREE.Color(0x171717)
+      : new THREE.Color(0xAAAAAA);
     this.scene.environment = null;
     this.scene.fog = null;
 
@@ -480,14 +483,6 @@ Editor.prototype = {
     this.deselect();
 
     this.signals.editorCleared.dispatch();
-
-    this.signals.sceneBackgroundChanged.dispatch(
-      'Color',
-      0xafafaf,
-      '',
-      '',
-      ''
-      );
   },
 
   toJSON: function () {

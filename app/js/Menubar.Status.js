@@ -37,6 +37,7 @@ function MenubarStatus( editor ) {
 	// darkmode
 	var darkmode = new UIBoolean( editor.config.getKey( 'darkmode' ), strings.getKey( 'menubar/status/darkmode' ) );
 	darkmode.text.setColor( '#888' );
+	darkmode.setId("isDarkMode");
 	darkmode.onChange( function () {
 		var value = this.getValue();
 		Checkbox(value, editor);
