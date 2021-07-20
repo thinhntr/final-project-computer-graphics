@@ -38,6 +38,35 @@ function MenubarAdd(editor) {
 
   options.add(new UIHorizontalRule());
 
+  // Plane
+
+  var option = new UIRow();
+  option.setClass("option");
+  option.setTextContent(strings.getKey("menubar/add/plane"));
+  option.onClick(function () {
+    var geometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+    var material = new THREE.MeshStandardMaterial();
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.name = "Plane";
+
+    editor.execute(new AddObjectCommand(editor, mesh));
+  });
+  options.add(option);
+
+  // Tetrahedron
+
+  var option = new UIRow();
+  option.setClass("option");
+  option.setTextContent(strings.getKey("menubar/add/tetrahedron"));
+  option.onClick(function () {
+    var geometry = new THREE.TetrahedronGeometry(1, 0);
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
+    mesh.name = "Tetrahedron";
+
+    editor.execute(new AddObjectCommand(editor, mesh));
+  });
+  options.add(option);
+
   // Box
 
   var option = new UIRow();
@@ -52,24 +81,15 @@ function MenubarAdd(editor) {
   });
   options.add(option);
 
-  // Cylinder
+  // Octahedron
 
   var option = new UIRow();
   option.setClass("option");
-  option.setTextContent(strings.getKey("menubar/add/cylinder"));
+  option.setTextContent(strings.getKey("menubar/add/octahedron"));
   option.onClick(function () {
-    var geometry = new THREE.CylinderGeometry(
-      1,
-      1,
-      1,
-      8,
-      1,
-      false,
-      0,
-      Math.PI * 2
-    );
+    var geometry = new THREE.OctahedronGeometry(1, 0);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
-    mesh.name = "Cylinder";
+    mesh.name = "Octahedron";
 
     editor.execute(new AddObjectCommand(editor, mesh));
   });
@@ -103,6 +123,43 @@ function MenubarAdd(editor) {
   });
   options.add(option);
 
+  // Sphere
+
+  var option = new UIRow();
+  option.setClass("option");
+  option.setTextContent(strings.getKey("menubar/add/sphere"));
+  option.onClick(function () {
+    var geometry = new THREE.SphereGeometry(3, 32, 32);
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
+    mesh.name = "Sphere";
+
+    editor.execute(new AddObjectCommand(editor, mesh));
+  });
+  options.add(option);
+
+  // Cylinder
+
+  var option = new UIRow();
+  option.setClass("option");
+  option.setTextContent(strings.getKey("menubar/add/cylinder"));
+  option.onClick(function () {
+    var geometry = new THREE.CylinderGeometry(
+      1,
+      1,
+      1,
+      8,
+      1,
+      false,
+      0,
+      Math.PI * 2
+    );
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
+    mesh.name = "Cylinder";
+
+    editor.execute(new AddObjectCommand(editor, mesh));
+  });
+  options.add(option);
+
   // Lathe
 
   var option = new UIRow();
@@ -129,63 +186,6 @@ function MenubarAdd(editor) {
       new THREE.MeshStandardMaterial({ side: THREE.DoubleSide })
     );
     mesh.name = "Lathe";
-
-    editor.execute(new AddObjectCommand(editor, mesh));
-  });
-  options.add(option);
-
-  // Octahedron
-
-  var option = new UIRow();
-  option.setClass("option");
-  option.setTextContent(strings.getKey("menubar/add/octahedron"));
-  option.onClick(function () {
-    var geometry = new THREE.OctahedronGeometry(1, 0);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
-    mesh.name = "Octahedron";
-
-    editor.execute(new AddObjectCommand(editor, mesh));
-  });
-  options.add(option);
-
-  // Plane
-
-  var option = new UIRow();
-  option.setClass("option");
-  option.setTextContent(strings.getKey("menubar/add/plane"));
-  option.onClick(function () {
-    var geometry = new THREE.PlaneGeometry(1, 1, 1, 1);
-    var material = new THREE.MeshStandardMaterial();
-    var mesh = new THREE.Mesh(geometry, material);
-    mesh.name = "Plane";
-
-    editor.execute(new AddObjectCommand(editor, mesh));
-  });
-  options.add(option);
-
-  // Sphere
-
-  var option = new UIRow();
-  option.setClass("option");
-  option.setTextContent(strings.getKey("menubar/add/sphere"));
-  option.onClick(function () {
-    var geometry = new THREE.SphereGeometry(3, 32, 32);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
-    mesh.name = "Sphere";
-
-    editor.execute(new AddObjectCommand(editor, mesh));
-  });
-  options.add(option);
-
-  // Tetrahedron
-
-  var option = new UIRow();
-  option.setClass("option");
-  option.setTextContent(strings.getKey("menubar/add/tetrahedron"));
-  option.onClick(function () {
-    var geometry = new THREE.TetrahedronGeometry(1, 0);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial());
-    mesh.name = "Tetrahedron";
 
     editor.execute(new AddObjectCommand(editor, mesh));
   });
