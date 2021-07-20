@@ -23,16 +23,6 @@
       import { Sidebar } from "./js/Sidebar.js";
       import { Menubar } from "./js/Menubar.js";
 
-      window.URL = window.URL || window.webkitURL;
-      window.BlobBuilder =
-        window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
-
-      Number.prototype.format = function () {
-        return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-      };
-
-      //
-
       var editor = new Editor();
 
       window.editor = editor;
@@ -53,32 +43,6 @@
       var menubar = new Menubar(editor);
       document.body.appendChild(menubar.dom);
 
-      //
-
-      document.addEventListener(
-        "dragover",
-        function (event) {
-          event.preventDefault();
-          event.dataTransfer.dropEffect = "copy";
-        },
-        false
-      );
-
-      document.addEventListener(
-        "drop",
-        function (event) {
-          event.preventDefault();
-
-          if (event.dataTransfer.types[0] === "text/plain") return;
-          if (event.dataTransfer.items) {
-            editor.loader.loadItemList(event.dataTransfer.items);
-          } else {
-            editor.loader.loadFiles(event.dataTransfer.files);
-          }
-        },
-        false
-      );
-
       function onWindowResize() {
         editor.signals.windowResize.dispatch();
       }
@@ -86,26 +50,6 @@
       window.addEventListener("resize", onWindowResize, false);
 
       onWindowResize();
-
-      //
-
-      var isLoadingFromHash = false;
-      var hash = window.location.hash;
-
-      if (hash.substr(1, 5) === "file=") {
-        var file = hash.substr(6);
-
-        if (confirm("Any unsaved data will be lost. Are you sure?")) {
-          var loader = new THREE.FileLoader();
-          loader.crossOrigin = "";
-          loader.load(file, function (text) {
-            editor.clear();
-            editor.fromJSON(JSON.parse(text));
-          });
-
-          isLoadingFromHash = true;
-        }
-      }
     </script>
   </body>
 </html>
