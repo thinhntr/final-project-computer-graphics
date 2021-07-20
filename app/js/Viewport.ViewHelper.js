@@ -202,12 +202,9 @@ class ViewHelper extends THREE.Object3D {
 			const step = delta * turnRate;
 			const focusPoint = this.controls.center;
 
-			// animate position by doing a slerp and then scaling the position on the unit sphere
-
 			q1.rotateTowards( q2, step );
 			editorCamera.position.set( 0, 0, 1 ).applyQuaternion( q1 ).multiplyScalar( radius ).add( focusPoint );
 
-			// animate orientation
 
 			editorCamera.quaternion.rotateTowards( targetQuaternion, step );
 

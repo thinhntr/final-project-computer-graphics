@@ -54,37 +54,6 @@ function SidebarMaterial( editor ) {
 
 	// container.add( materialClassRow );
 
-	// uuid
-
-	// var materialUUIDRow = new UIRow();
-	// var materialUUID = new UIInput().setWidth( '102px' ).setFontSize( '12px' ).setDisabled( true );
-	// var materialUUIDRenew = new UIButton( strings.getKey( 'sidebar/material/new' ) ).setMarginLeft( '7px' ).onClick( function () {
-
-	// 	materialUUID.setValue( THREE.MathUtils.generateUUID() );
-	// 	update();
-
-	// } );
-
-	// materialUUIDRow.add( new UIText( strings.getKey( 'sidebar/material/uuid' ) ).setWidth( '90px' ) );
-	// materialUUIDRow.add( materialUUID );
-	// materialUUIDRow.add( materialUUIDRenew );
-
-	// container.add( materialUUIDRow );
-
-	// name
-
-	// var materialNameRow = new UIRow();
-	// var materialName = new UIInput().setWidth( '150px' ).setFontSize( '12px' ).onChange( function () {
-
-	// 	editor.execute( new SetMaterialValueCommand( editor, editor.selected, 'name', materialName.getValue(), currentMaterialSlot ) );
-
-	// } );
-
-	// materialNameRow.add( new UIText( strings.getKey( 'sidebar/material/name' ) ).setWidth( '90px' ) );
-	// materialNameRow.add( materialName );
-
-	// container.add( materialNameRow );
-
 	// program
 
 	var materialProgramRow = new UIRow();
@@ -117,7 +86,6 @@ function SidebarMaterial( editor ) {
 	} );
 	materialProgramRow.add( materialProgramFragment );
 
-	// container.add( materialProgramRow );
 
 	// color
 
@@ -137,8 +105,6 @@ function SidebarMaterial( editor ) {
 	materialRoughnessRow.add( new UIText( strings.getKey( 'sidebar/material/roughness' ) ).setWidth( '90px' ) );
 	materialRoughnessRow.add( materialRoughness );
 
-	// container.add( materialRoughnessRow );
-
 	// metalness
 
 	var materialMetalnessRow = new UIRow();
@@ -146,22 +112,6 @@ function SidebarMaterial( editor ) {
 
 	materialMetalnessRow.add( new UIText( strings.getKey( 'sidebar/material/metalness' ) ).setWidth( '90px' ) );
 	materialMetalnessRow.add( materialMetalness );
-
-	// container.add( materialMetalnessRow );
-
-	/*
-	// sheen
-
-	var materialSheenRow = new UIRow();
-	var materialSheenEnabled = new UICheckbox( false ).onChange( update );
-	var materialSheen = new UIColor().setHexValue( 0x000000 ).onInput( update );
-
-	materialSheenRow.add( new UIText( strings.getKey( 'sidebar/material/sheen' ) ).setWidth( '90px' ) )
-	materialSheenRow.add( materialSheenEnabled );
-	materialSheenRow.add( materialSheen );
-
-	container.add( materialSheenRow );
-	*/
 
 	// transmission
 
@@ -171,7 +121,6 @@ function SidebarMaterial( editor ) {
 	materialTransmissionRow.add( new UIText( strings.getKey( 'sidebar/material/transmission' ) ).setWidth( '90px' ) );
 	materialTransmissionRow.add( materialTransmission );
 
-	// container.add( materialTransmissionRow );
 
 	// emissive
 
@@ -183,8 +132,6 @@ function SidebarMaterial( editor ) {
 	materialEmissiveRow.add( materialEmissive );
 	materialEmissiveRow.add( materialEmissiveIntensity );
 
-	// container.add( materialEmissiveRow );
-
 	// specular
 
 	var materialSpecularRow = new UIRow();
@@ -192,8 +139,6 @@ function SidebarMaterial( editor ) {
 
 	materialSpecularRow.add( new UIText( strings.getKey( 'sidebar/material/specular' ) ).setWidth( '90px' ) );
 	materialSpecularRow.add( materialSpecular );
-
-	// container.add( materialSpecularRow );
 
 	// shininess
 
@@ -203,7 +148,6 @@ function SidebarMaterial( editor ) {
 	materialShininessRow.add( new UIText( strings.getKey( 'sidebar/material/shininess' ) ).setWidth( '90px' ) );
 	materialShininessRow.add( materialShininess );
 
-	// container.add( materialShininessRow );
 
 	// clearcoat
 
@@ -213,7 +157,6 @@ function SidebarMaterial( editor ) {
 	materialClearcoatRow.add( new UIText( strings.getKey( 'sidebar/material/clearcoat' ) ).setWidth( '90px' ) );
 	materialClearcoatRow.add( materialClearcoat );
 
-	// container.add( materialClearcoatRow );
 
 	// clearcoatRoughness
 
@@ -223,7 +166,6 @@ function SidebarMaterial( editor ) {
 	materialClearcoatRoughnessRow.add( new UIText( strings.getKey( 'sidebar/material/clearcoatroughness' ) ).setWidth( '90px' ) );
 	materialClearcoatRoughnessRow.add( materialClearcoatRoughness );
 
-	// container.add( materialClearcoatRoughnessRow );
 
 	// vertex colors
 
@@ -233,7 +175,6 @@ function SidebarMaterial( editor ) {
 	materialVertexColorsRow.add( new UIText( strings.getKey( 'sidebar/material/vertexcolors' ) ).setWidth( '90px' ) );
 	materialVertexColorsRow.add( materialVertexColors );
 
-	// container.add( materialVertexColorsRow );
 
 	// vertex tangents
 
@@ -243,7 +184,6 @@ function SidebarMaterial( editor ) {
 	materialVertexTangentsRow.add( new UIText( strings.getKey( 'sidebar/material/vertextangents' ) ).setWidth( '90px' ) );
 	materialVertexTangentsRow.add( materialVertexTangents );
 
-	// container.add( materialVertexTangentsRow );
 
 	// depth packing
 
@@ -257,7 +197,6 @@ function SidebarMaterial( editor ) {
 	materialDepthPackingRow.add( new UIText( strings.getKey( 'sidebar/material/depthPacking' ) ).setWidth( '90px' ) );
 	materialDepthPackingRow.add( materialDepthPacking );
 
-	// container.add( materialDepthPackingRow );
 
 	// map
 
@@ -281,7 +220,6 @@ function SidebarMaterial( editor ) {
 	materialMatcapMapRow.add( materialMatcapMapEnabled );
 	materialMatcapMapRow.add( materialMatcapMap );
 
-	// container.add( materialMatcapMapRow );
 
 	// alpha map
 
@@ -293,7 +231,6 @@ function SidebarMaterial( editor ) {
 	materialAlphaMapRow.add( materialAlphaMapEnabled );
 	materialAlphaMapRow.add( materialAlphaMap );
 
-	// container.add( materialAlphaMapRow );
 
 	// bump map
 
@@ -307,7 +244,6 @@ function SidebarMaterial( editor ) {
 	materialBumpMapRow.add( materialBumpMap );
 	materialBumpMapRow.add( materialBumpScale );
 
-	// container.add( materialBumpMapRow );
 
 	// normal map
 
@@ -323,7 +259,6 @@ function SidebarMaterial( editor ) {
 	materialNormalMapRow.add( materialNormalScaleX );
 	materialNormalMapRow.add( materialNormalScaleY );
 
-	// container.add( materialNormalMapRow );
 
 	// clearcoat normal map
 
@@ -339,7 +274,6 @@ function SidebarMaterial( editor ) {
 	materialClearcoatNormalMapRow.add( materialClearcoatNormalScaleX );
 	materialClearcoatNormalMapRow.add( materialClearcoatNormalScaleY );
 
-	// container.add( materialClearcoatNormalMapRow );
 
 	// displacement map
 
@@ -353,7 +287,6 @@ function SidebarMaterial( editor ) {
 	materialDisplacementMapRow.add( materialDisplacementMap );
 	materialDisplacementMapRow.add( materialDisplacementScale );
 
-	// container.add( materialDisplacementMapRow );
 
 	// roughness map
 
@@ -365,7 +298,6 @@ function SidebarMaterial( editor ) {
 	materialRoughnessMapRow.add( materialRoughnessMapEnabled );
 	materialRoughnessMapRow.add( materialRoughnessMap );
 
-	// container.add( materialRoughnessMapRow );
 
 	// metalness map
 
@@ -377,7 +309,6 @@ function SidebarMaterial( editor ) {
 	materialMetalnessMapRow.add( materialMetalnessMapEnabled );
 	materialMetalnessMapRow.add( materialMetalnessMap );
 
-	// container.add( materialMetalnessMapRow );
 
 	// specular map
 
@@ -389,7 +320,6 @@ function SidebarMaterial( editor ) {
 	materialSpecularMapRow.add( materialSpecularMapEnabled );
 	materialSpecularMapRow.add( materialSpecularMap );
 
-	// container.add( materialSpecularMapRow );
 
 	// env map
 
@@ -403,8 +333,6 @@ function SidebarMaterial( editor ) {
 	materialEnvMapRow.add( materialEnvMap );
 	materialEnvMapRow.add( materialReflectivity );
 
-	// container.add( materialEnvMapRow );
-
 	// light map
 
 	var materialLightMapRow = new UIRow();
@@ -415,7 +343,6 @@ function SidebarMaterial( editor ) {
 	materialLightMapRow.add( materialLightMapEnabled );
 	materialLightMapRow.add( materialLightMap );
 
-	// container.add( materialLightMapRow );
 
 	// ambient occlusion map
 
@@ -429,7 +356,6 @@ function SidebarMaterial( editor ) {
 	materialAOMapRow.add( materialAOMap );
 	materialAOMapRow.add( materialAOScale );
 
-	// container.add( materialAOMapRow );
 
 	// emissive map
 
@@ -441,7 +367,6 @@ function SidebarMaterial( editor ) {
 	materialEmissiveMapRow.add( materialEmissiveMapEnabled );
 	materialEmissiveMapRow.add( materialEmissiveMap );
 
-	// container.add( materialEmissiveMapRow );
 
 	// gradient map
 
@@ -452,8 +377,6 @@ function SidebarMaterial( editor ) {
 	materialGradientMapRow.add( new UIText( strings.getKey( 'sidebar/material/gradientmap' ) ).setWidth( '90px' ) );
 	materialGradientMapRow.add( materialGradientMapEnabled );
 	materialGradientMapRow.add( materialGradientMap );
-
-	// container.add( materialGradientMapRow );
 
 	// side
 
@@ -469,7 +392,6 @@ function SidebarMaterial( editor ) {
 	materialSideRow.add( new UIText( strings.getKey( 'sidebar/material/side' ) ).setWidth( '90px' ) );
 	materialSideRow.add( materialSide );
 
-	// container.add( materialSideRow );
 
 	// size
 
@@ -479,7 +401,6 @@ function SidebarMaterial( editor ) {
 	materialSizeRow.add( new UIText( strings.getKey( 'sidebar/material/size' ) ).setWidth( '90px' ) );
 	materialSizeRow.add( materialSize );
 
-	// container.add( materialSizeRow );
 
 	// sizeAttenuation
 
@@ -489,7 +410,7 @@ function SidebarMaterial( editor ) {
 	materialSizeAttenuationRow.add( new UIText( strings.getKey( 'sidebar/material/sizeAttenuation' ) ).setWidth( '90px' ) );
 	materialSizeAttenuationRow.add( materialSizeAttenuation );
 
-	// container.add( materialSizeAttenuationRow );
+
 
 	// shading
 
@@ -499,7 +420,6 @@ function SidebarMaterial( editor ) {
 	materialShadingRow.add( new UIText( strings.getKey( 'sidebar/material/flatshaded' ) ).setWidth( '90px' ) );
 	materialShadingRow.add( materialShading );
 
-	// container.add( materialShadingRow );
 
 	// blending
 
@@ -518,7 +438,6 @@ function SidebarMaterial( editor ) {
 	materialBlendingRow.add( new UIText( strings.getKey( 'sidebar/material/blending' ) ).setWidth( '90px' ) );
 	materialBlendingRow.add( materialBlending );
 
-	// container.add( materialBlendingRow );
 
 	// opacity
 
@@ -528,7 +447,6 @@ function SidebarMaterial( editor ) {
 	materialOpacityRow.add( new UIText( strings.getKey( 'sidebar/material/opacity' ) ).setWidth( '90px' ) );
 	materialOpacityRow.add( materialOpacity );
 
-	// container.add( materialOpacityRow );
 
 	// transparent
 
@@ -538,7 +456,6 @@ function SidebarMaterial( editor ) {
 	materialTransparentRow.add( new UIText( strings.getKey( 'sidebar/material/transparent' ) ).setWidth( '90px' ) );
 	materialTransparentRow.add( materialTransparent );
 
-	// container.add( materialTransparentRow );
 
 	// alpha test
 
@@ -548,7 +465,6 @@ function SidebarMaterial( editor ) {
 	materialAlphaTestRow.add( new UIText( strings.getKey( 'sidebar/material/alphatest' ) ).setWidth( '90px' ) );
 	materialAlphaTestRow.add( materialAlphaTest );
 
-	// container.add( materialAlphaTestRow );
 
 	// depth test
 
@@ -558,7 +474,6 @@ function SidebarMaterial( editor ) {
 	materialDepthTestRow.add( new UIText( strings.getKey( 'sidebar/material/depthtest' ) ).setWidth( '90px' ) );
 	materialDepthTestRow.add( materialDepthTest );
 
-	// container.add( materialDepthTestRow );
 
 	// depth write
 
@@ -568,7 +483,6 @@ function SidebarMaterial( editor ) {
 	materialDepthWriteRow.add( new UIText( strings.getKey( 'sidebar/material/depthwrite' ) ).setWidth( '90px' ) );
 	materialDepthWriteRow.add( materialDepthWrite );
 
-	// container.add( materialDepthWriteRow );
 
 	// wireframe
 
@@ -578,7 +492,6 @@ function SidebarMaterial( editor ) {
 	materialWireframeRow.add( new UIText( strings.getKey( 'sidebar/material/wireframe' ) ).setWidth( '90px' ) );
 	materialWireframeRow.add( materialWireframe );
 
-	// container.add( materialWireframeRow );
 
 	//
 
@@ -605,11 +518,7 @@ function SidebarMaterial( editor ) {
 
 		if ( material ) {
 
-			// if ( material.uuid !== undefined && material.uuid !== materialUUID.getValue() ) {
-
-			// 	editor.execute( new SetMaterialValueCommand( editor, currentObject, 'uuid', materialUUID.getValue(), currentMaterialSlot ) );
-
-			// }
+			
 
 			if ( material.type !== materialClass.getValue() ) {
 
@@ -623,7 +532,7 @@ function SidebarMaterial( editor ) {
 
 				if ( Array.isArray( currentObject.material ) ) {
 
-					// don't remove the entire multi-material. just the material of the selected slot
+					
 
 					editor.removeMaterial( currentObject.material[ currentMaterialSlot ] );
 
@@ -1225,20 +1134,14 @@ function SidebarMaterial( editor ) {
 	function setRowVisibility() {
 
 		var properties = {
-			// 'name': materialNameRow,
+			
 			'color': materialColorRow,
-			// 'roughness': materialRoughnessRow,
-			// 'metalness': materialMetalnessRow,
-			// 'emissive': materialEmissiveRow,
-			// 'sheen': materialSheenRow,
 			'transmission': materialTransmissionRow,
 			'specular': materialSpecularRow,
 			'shininess': materialShininessRow,
 			'clearcoat': materialClearcoatRow,
 			'clearcoatRoughness': materialClearcoatRoughnessRow,
 			'vertexShader': materialProgramRow,
-			// 'vertexColors': materialVertexColorsRow,
-			// 'vertexTangents': materialVertexTangentsRow,
 			'depthPacking': materialDepthPackingRow,
 			'map': materialMapRow,
 			'matcap': materialMatcapMapRow,
@@ -1317,18 +1220,6 @@ function SidebarMaterial( editor ) {
 
 		material = editor.getObjectMaterial( currentObject, currentMaterialSlot );
 
-		// if ( material.uuid !== undefined ) {
-
-		// 	materialUUID.setValue( material.uuid );
-
-		// }
-
-		// if ( material.name !== undefined ) {
-
-		// 	materialName.setValue( material.name );
-
-		// }
-
 		if ( currentObject.isMesh ) {
 
 			materialClass.setOptions( meshMaterialOptions );
@@ -1382,13 +1273,6 @@ function SidebarMaterial( editor ) {
 
 		}
 
-		// if ( material.emissive !== undefined ) {
-
-		// 	materialEmissive.setHexValue( material.emissive.getHexString() );
-
-		// 	materialEmissiveIntensity.setValue( material.emissiveIntensity );
-
-		// }
 
 		if ( material.specular !== undefined ) {
 
@@ -1414,11 +1298,6 @@ function SidebarMaterial( editor ) {
 
 		}
 
-		// if ( material.vertexColors !== undefined ) {
-
-		// 	materialVertexColors.setValue( material.vertexColors );
-
-		// }
 
 		if ( material.depthPacking !== undefined ) {
 
