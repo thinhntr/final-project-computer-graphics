@@ -33,8 +33,6 @@ function MenubarView( editor ) {
 
 		}
 
-		// Safari
-
 		if ( document.webkitFullscreenElement === null ) {
 
 			document.documentElement.webkitRequestFullscreen();
@@ -48,7 +46,6 @@ function MenubarView( editor ) {
 	} );
 	options.add( option );
 
-	// VR (Work in progress)
 
 	if ( 'xr' in navigator ) {
 

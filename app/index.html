@@ -7,9 +7,8 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-    <link rel="apple-touch-icon" href="images/icon.png" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="shortcut icon" href="../files/favicon.ico" />
+    <link rel="shortcut icon" href="./favicon.ico" />
   </head>
   <body>
     <link rel="stylesheet" href="css/main.css" />
@@ -24,20 +23,10 @@
       import { Sidebar } from "./js/Sidebar.js";
       import { Menubar } from "./js/Menubar.js";
 
-      window.URL = window.URL || window.webkitURL;
-      window.BlobBuilder =
-        window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
-
-      Number.prototype.format = function () {
-        return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-      };
-
-      //
-
       var editor = new Editor();
 
-      window.editor = editor; // Expose editor to Console
-      window.THREE = THREE; // Expose THREE to APP Scripts and Console
+      window.editor = editor;
+      window.THREE = THREE;
 
       var viewport = new Viewport(editor);
       document.body.appendChild(viewport.dom);
@@ -54,35 +43,6 @@
       var menubar = new Menubar(editor);
       document.body.appendChild(menubar.dom);
 
-      //
-
-      document.addEventListener(
-        "dragover",
-        function (event) {
-          event.preventDefault();
-          event.dataTransfer.dropEffect = "copy";
-        },
-        false
-      );
-
-      document.addEventListener(
-        "drop",
-        function (event) {
-          event.preventDefault();
-
-          if (event.dataTransfer.types[0] === "text/plain") return; // Outliner drop
-
-          if (event.dataTransfer.items) {
-            // DataTransferItemList supports folders
-
-            editor.loader.loadItemList(event.dataTransfer.items);
-          } else {
-            editor.loader.loadFiles(event.dataTransfer.files);
-          }
-        },
-        false
-      );
-
       function onWindowResize() {
         editor.signals.windowResize.dispatch();
         editor.signals.sceneBackgroundChanged.dispatch(
@@ -97,26 +57,6 @@
       window.addEventListener("resize", onWindowResize, false);
 
       onWindowResize();
-
-      //
-
-      var isLoadingFromHash = false;
-      var hash = window.location.hash;
-
-      if (hash.substr(1, 5) === "file=") {
-        var file = hash.substr(6);
-
-        if (confirm("Any unsaved data will be lost. Are you sure?")) {
-          var loader = new THREE.FileLoader();
-          loader.crossOrigin = "";
-          loader.load(file, function (text) {
-            editor.clear();
-            editor.fromJSON(JSON.parse(text));
-          });
-
-          isLoadingFromHash = true;
-        }
-      }
     </script>
   </body>
 </html>

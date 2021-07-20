@@ -1,7 +1,6 @@
 import * as THREE from "../js/three.module.js";
 
 import { Config } from "./Config.js";
-import { Loader } from "./Loader.js";
 import { History as _History } from "./History.js";
 import { Strings } from "./Strings.js";
 import { Storage as _Storage } from "./Storage.js";
@@ -23,11 +22,6 @@ function Editor() {
 
     startPlayer: new Signal(),
     stopPlayer: new Signal(),
-
-    // vr
-
-    toggleVR: new Signal(),
-    exitedVR: new Signal(),
 
     // notifications
 
@@ -88,8 +82,6 @@ function Editor() {
   this.history = new _History(this);
   this.storage = new _Storage();
   this.strings = new Strings(this.config);
-
-  this.loader = new Loader(this);
 
   this.camera = _DEFAULT_CAMERA.clone();
 
@@ -333,7 +325,6 @@ Editor.prototype = {
         } else if (object.isSkinnedMesh) {
           helper = new THREE.SkeletonHelper(object.skeleton.bones[0]);
         } else {
-          // no helper for this object type
           return;
         }
 
@@ -500,25 +491,6 @@ Editor.prototype = {
       );
   },
 
-  //
-
-  fromJSON: function (json) {
-    var scope = this;
-
-    var loader = new THREE.ObjectLoader();
-    var camera = loader.parse(json.camera);
-
-    this.camera.copy(camera);
-    this.signals.cameraResetted.dispatch();
-
-    this.history.fromJSON(json.history);
-    this.scripts = json.scripts;
-
-    loader.parse(json.scene, function (scene) {
-      scope.setScene(scene);
-    });
-  },
-
   toJSON: function () {
     // scripts clean up
 
@@ -543,7 +515,6 @@ Editor.prototype = {
       project: {
         shadows: this.config.getKey("project/renderer/shadows"),
         shadowType: this.config.getKey("project/renderer/shadowType"),
-        vr: this.config.getKey("project/vr"),
         physicallyCorrectLights: this.config.getKey(
           "project/renderer/physicallyCorrectLights"
         ),

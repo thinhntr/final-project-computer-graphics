@@ -232,7 +232,6 @@ function SidebarScene(editor) {
         backgroundEquirectangularTexture.setValue( null );
       }
 
-      // TODO: Add Texture/EquirectangularTexture support
     } else {
       backgroundType.setValue("None");
       backgroundTexture.setValue( null );
@@ -250,26 +249,6 @@ function SidebarScene(editor) {
 
   signals.sceneGraphChanged.add(refreshUI);
 
-  
-	// signals.objectChanged.add( function ( object ) {
-
-	// 	var options = outliner.options;
-
-	// 	for ( var i = 0; i < options.length; i ++ ) {
-
-	// 		var option = options[ i ];
-
-	// 		if ( option.value === object.id ) {
-
-	// 			option.innerHTML = buildHTML( object );
-	// 			return;
-
-	// 		}
-
-	// 	}
-
-	// } );
-	
 
   signals.objectSelected.add(function (object) {
     if (ignoreObjectSelectedSignal === true) return;

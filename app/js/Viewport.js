@@ -1,21 +1,16 @@
 import * as THREE from '../js/three.module.js';
 
-import { TransformControls } from '../examples/jsm/controls/TransformControls.js';
+import { TransformControls } from './controls/TransformControls.js';
 
 import { UIPanel } from './libs/ui.js';
 
 import { EditorControls } from './EditorControls.js';
 
 import { ViewportCamera } from './Viewport.Camera.js';
-// import { ViewportInfo } from './Viewport.Info.js';
-// import { ViewHelper } from './Viewport.ViewHelper.js';
-// import { VR } from './Viewport.VR.js';
 
 import { SetPositionCommand } from './commands/SetPositionCommand.js';
 import { SetRotationCommand } from './commands/SetRotationCommand.js';
 import { SetScaleCommand } from './commands/SetScaleCommand.js';
-
-import { RoomEnvironment } from '../examples/jsm/environments/RoomEnvironment.js';
 
 function Viewport( editor ) {
 
@@ -26,7 +21,6 @@ function Viewport( editor ) {
 	container.setPosition( 'absolute' );
 
 	container.add( new ViewportCamera( editor ) );
-	// container.add( new ViewportInfo( editor ) );
 
 	//
 
@@ -56,8 +50,6 @@ function Viewport( editor ) {
 	grid2.material.vertexColors = false;
 	grid.add( grid2 );
 
-	// var viewHelper = new ViewHelper( camera, container );
-	// var vr = new VR( editor );
 
 	//
 
@@ -292,8 +284,6 @@ function Viewport( editor ) {
 	container.dom.addEventListener( 'touchstart', onTouchStart, false );
 	container.dom.addEventListener( 'dblclick', onDoubleClick, false );
 
-	// controls need to be added *after* main logic,
-	// otherwise controls.enabled doesn't work.
 
 	var controls = new EditorControls( camera, container.dom );
 	controls.addEventListener( 'change', function () {
@@ -302,7 +292,6 @@ function Viewport( editor ) {
 		signals.refreshSidebarObject3D.dispatch( camera );
 
 	} );
-	// viewHelper.controls = controls;
 
 	// signals
 
@@ -605,9 +594,6 @@ function Viewport( editor ) {
 			case 'Background':
 				scene.environment = pmremTexture;
 				break;
-			case 'ModelViewer':
-				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
-				break;
 
 		}
 
@@ -668,11 +654,9 @@ function Viewport( editor ) {
 
 		} else if ( viewportCamera.isOrthographicCamera ) {
 
-			// TODO
 
 		}
 
-		// disable EditorControls when setting a user camera
 
 		controls.enabled = ( viewportCamera === editor.camera );
 
@@ -680,7 +664,6 @@ function Viewport( editor ) {
 
 	} );
 
-	// signals.exitedVR.add( render );
 
 
 	//
@@ -715,7 +698,7 @@ function Viewport( editor ) {
 
 	// animations
 
-	var clock = new THREE.Clock(); // only used for animations
+	var clock = new THREE.Clock();
 
 	function animate() {
 
@@ -731,20 +714,7 @@ function Viewport( editor ) {
 
 		}
 
-		// if ( viewHelper.animating === true ) {
 
-		// 	viewHelper.update( delta );
-		// 	needsUpdate = true;
-
-		// }
-
-		// if ( vr.currentSession !== null ) {
-
-		// 	needsUpdate = true;
-
-		// }
-
-		// if ( needsUpdate === true ) render();
 
 	}
 
@@ -757,8 +727,6 @@ function Viewport( editor ) {
 
 		startTime = performance.now();
 
-		// Adding/removing grid to scene so materials with depthWrite false
-		// don't render under the grid.
 
 		scene.add( grid );
 		renderer.setViewport( 0, 0, container.dom.offsetWidth, container.dom.offsetHeight );
@@ -769,7 +737,6 @@ function Viewport( editor ) {
 
 			renderer.autoClear = false;
 			if ( showSceneHelpers === true ) renderer.render( sceneHelpers, camera );
-			// if ( vr.currentSession === null ) viewHelper.render( renderer );
 			renderer.autoClear = true;
 
 		}
