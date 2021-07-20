@@ -526,7 +526,7 @@ select:hover {
 
 #sidebar canvas {
   vertical-align: middle;
-  border: 1px solid rgb(0,0,0) !important;
+  border: 1px solid rgb(var(--title)) !important;
 }
 
 #tabs {
@@ -670,7 +670,7 @@ select:hover {
     --gray-700: 120,120,120;
     --gray-900: 0, 0, 10;
   
-    --pink-500: 120,120,120;
+    --pink-500: 255,255,255;
     --pink-600: 170, 170, 170;
 
     --title: 255,255,255;
