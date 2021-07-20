@@ -16,7 +16,6 @@ import {
 import { UIBoolean } from "./libs/ui.three.js";
 
 import { AddObjectCommand } from "./commands/AddObjectCommand.js";
-import { SetUuidCommand } from "./commands/SetUuidCommand.js";
 import { SetValueCommand } from "./commands/SetValueCommand.js";
 import { SetPositionCommand } from "./commands/SetPositionCommand.js";
 import { SetRotationCommand } from "./commands/SetRotationCommand.js";
@@ -88,31 +87,6 @@ function SidebarObject(editor) {
   objectTypeRow.add(objectType);
 
   container.add(objectTypeRow);
-
-  // uuid
-
-  var objectUUIDRow = new UIRow();
-  var objectUUID = new UIInput()
-    .setWidth("102px")
-    .setFontSize("12px")
-    .setDisabled(true);
-  var objectUUIDRenew = new UIButton(strings.getKey("sidebar/object/new"))
-    .setMarginLeft("7px")
-    .onClick(function () {
-      objectUUID.setValue(THREE.MathUtils.generateUUID());
-
-      editor.execute(
-        new SetUuidCommand(editor, editor.selected, objectUUID.getValue())
-      );
-    });
-
-  objectUUIDRow.add(
-    new UIText(strings.getKey("sidebar/object/uuid")).setWidth("90px")
-  );
-  objectUUIDRow.add(objectUUID);
-  objectUUIDRow.add(objectUUIDRenew);
-
-  container.add(objectUUIDRow);
 
   // name
 
@@ -463,30 +437,6 @@ function SidebarObject(editor) {
 
   container.add(objectVisibleRow);
 
-  // frustumCulled
-
-  var objectFrustumCulledRow = new UIRow();
-  var objectFrustumCulled = new UICheckbox().onChange(update);
-
-  objectFrustumCulledRow.add(
-    new UIText(strings.getKey("sidebar/object/frustumcull")).setWidth("90px")
-  );
-  objectFrustumCulledRow.add(objectFrustumCulled);
-
-  container.add(objectFrustumCulledRow);
-
-  // renderOrder
-
-  var objectRenderOrderRow = new UIRow();
-  var objectRenderOrder = new UIInteger().setWidth("50px").onChange(update);
-
-  objectRenderOrderRow.add(
-    new UIText(strings.getKey("sidebar/object/renderorder")).setWidth("90px")
-  );
-  objectRenderOrderRow.add(objectRenderOrder);
-
-  container.add(objectRenderOrderRow);
-
   // user data
 
   var objectUserDataRow = new UIRow();
@@ -744,28 +694,6 @@ function SidebarObject(editor) {
         );
       }
 
-      if (object.frustumCulled !== objectFrustumCulled.getValue()) {
-        editor.execute(
-          new SetValueCommand(
-            editor,
-            object,
-            "frustumCulled",
-            objectFrustumCulled.getValue()
-          )
-        );
-      }
-
-      if (object.renderOrder !== objectRenderOrder.getValue()) {
-        editor.execute(
-          new SetValueCommand(
-            editor,
-            object,
-            "renderOrder",
-            objectRenderOrder.getValue()
-          )
-        );
-      }
-
       if (
         object.castShadow !== undefined &&
         object.castShadow !== objectCastShadow.getValue()
@@ -934,8 +862,6 @@ function SidebarObject(editor) {
     }
     objectType.setOptions(options);
     objectType.setValue(object.type);
-
-    objectUUID.setValue(object.uuid);
     objectName.setValue(object.name);
 
     objectPositionX.setValue(object.position.x);
@@ -1021,8 +947,6 @@ function SidebarObject(editor) {
     }
 
     objectVisible.setValue(object.visible);
-    objectFrustumCulled.setValue(object.frustumCulled);
-    objectRenderOrder.setValue(object.renderOrder);
 
     try {
       objectUserData.setValue(JSON.stringify(object.userData, null, "  "));
