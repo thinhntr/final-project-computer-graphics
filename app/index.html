@@ -7,9 +7,8 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-    <link rel="apple-touch-icon" href="images/icon.png" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="shortcut icon" href="../files/favicon.ico" />
+    <link rel="shortcut icon" href="./favicon.ico" />
   </head>
   <body>
     <link rel="stylesheet" href="css/main.css" />
@@ -36,8 +35,8 @@
 
       var editor = new Editor();
 
-      window.editor = editor; 
-      window.THREE = THREE; 
+      window.editor = editor;
+      window.THREE = THREE;
 
       var viewport = new Viewport(editor);
       document.body.appendChild(viewport.dom);
@@ -70,10 +69,8 @@
         function (event) {
           event.preventDefault();
 
-          if (event.dataTransfer.types[0] === "text/plain") return; 
+          if (event.dataTransfer.types[0] === "text/plain") return;
           if (event.dataTransfer.items) {
-            
-
             editor.loader.loadItemList(event.dataTransfer.items);
           } else {
             editor.loader.loadFiles(event.dataTransfer.files);
