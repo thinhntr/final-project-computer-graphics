@@ -142,8 +142,7 @@ function SidebarScene(editor) {
       backgroundType.getValue(),
       backgroundColor.getHexValue(),
       backgroundTexture.getValue(),
-      backgroundEquirectangularTexture.getValue(),
-      environmentType.getValue()
+      backgroundEquirectangularTexture.getValue()
     );
   }
 
@@ -178,27 +177,6 @@ function SidebarScene(editor) {
 	backgroundRow.add( backgroundEquirectangularTexture );
 
 	container.add( backgroundRow );
-
-  
-	var environmentRow = new UIRow();
-
-	var environmentType = new UISelect().setOptions( {
-
-		'None': '',
-		'Background': 'Background',
-
-	} ).setWidth( '150px' );
-	environmentType.setValue( 'Background' );
-	environmentType.onChange( function () {
-
-		signals.sceneEnvironmentChanged.dispatch( environmentType.getValue() );
-
-	} );
-
-	environmentRow.add( new UIText( strings.getKey( 'sidebar/scene/environment' ) ).setWidth( '90px' ) );
-	environmentRow.add( environmentType );
-
-	container.add( environmentRow );
 
   //
 
@@ -260,11 +238,6 @@ function SidebarScene(editor) {
       backgroundTexture.setValue( null );
       backgroundEquirectangularTexture.setValue( null );
     }
-    if ( scene.environment ) {
-			// TODO
-		} else {
-			environmentType.setValue( 'None' );
-		}
 
     refreshBackgroundUI();
   }
