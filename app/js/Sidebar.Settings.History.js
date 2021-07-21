@@ -41,7 +41,6 @@ function SidebarSettingsHistory( editor ) {
 		}
 
 	} );
-	container.add( persistent );
 
 	container.add( new UIBreak(), new UIBreak() );
 
