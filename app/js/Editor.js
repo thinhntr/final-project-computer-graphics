@@ -86,7 +86,7 @@ function Editor() {
   this.camera = _DEFAULT_CAMERA.clone();
 
   this.scene = new THREE.Scene();
-  this.scene.background = new THREE.Color(0xAAAAAA);
+  this.scene.background = new THREE.Color(0x171717);
   this.scene.name = "Scene";
 
   this.sceneHelpers = new THREE.Scene();
