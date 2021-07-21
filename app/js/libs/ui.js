@@ -410,7 +410,6 @@ class UICheckbox extends UIElement {
 		this.dom.type = 'checkbox';
 
 		this.setValue( boolean );
-		this.setValue( false );
 
 	}
 
