@@ -228,14 +228,17 @@ function SidebarScene(editor) {
       if (scene.background.isColor) {
         backgroundType.setValue("Color");
         backgroundColor.setHexValue(scene.background.getHex());
-        backgroundTexture.setValue( null );
-        backgroundEquirectangularTexture.setValue( null );
+      } else if (scene.background.isTexture) {
+        if (scene.background.mapping === THREE.EquirectangularReflectionMapping) {
+          backgroundType.setValue("Equirectangular");
+          backgroundEquirectangularTexture.setValue(scene.background);
+        } else {
+          backgroundType.setValue("Texture");
+          backgroundTexture.setValue(scene.background);
+        }
       }
-
     } else {
       backgroundType.setValue("None");
-      backgroundTexture.setValue( null );
-      backgroundEquirectangularTexture.setValue( null );
     }
 
     refreshBackgroundUI();
